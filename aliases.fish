@@ -16,5 +16,5 @@ alias push="git push"
 
 alias plz="sudo"
 
-alias apu="sudo apt update"
-alias api="sudo apt install"
+abbr --add apu "sudo apt update"
+abbr --add api "sudo apt install"
