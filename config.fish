@@ -10,3 +10,6 @@ source ~/.dotfiles/rust.fish
 source ~/.dotfiles/aliases.fish
 source ~/.dotfiles/customizations.fish
 source ~/.dotfiles/sdkman.fish
+
+# starship prompt init
+starship init fish | source

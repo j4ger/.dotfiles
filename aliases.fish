@@ -10,11 +10,11 @@ function ..... ; cd ../../../.. ; end
 function g        ; git $argv ; end
 function grep     ; command grep --color=auto $argv ; end
 
-alias chmox='chmod +x'
+abbr --add chmox "chmod +x"
 
-alias push="git push"
+abbr --add push "git push"
 
-alias plz="sudo"
+abbr --add plz "sudo"
 
 abbr --add apu "sudo apt update"
 abbr --add api "sudo apt install"
