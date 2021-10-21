@@ -7,9 +7,10 @@ source ~/.dotfiles/proxy.fish
 source ~/.dotfiles/android.fish
 source ~/.dotfiles/node.fish
 source ~/.dotfiles/rust.fish
+source ~/.dotfiles/python.fish
 source ~/.dotfiles/aliases.fish
 source ~/.dotfiles/customizations.fish
-source ~/.dotfiles/sdkman.fish
+source ~/.dotfiles/x-server.fish
 
 # starship prompt init
 starship init fish | source

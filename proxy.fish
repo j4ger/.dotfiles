@@ -18,3 +18,7 @@ sed -i "16c systemProp.https.proxyHost=$windows_host" ~/.gradle/gradle.propertie
 if [ "`git config --global --get proxy.https`" != "http://$windows_host:7890" ];
     git config --global proxy.https "http://$windows_host:7890"
 end
+
+if [ "`git config --global --get proxy.http`" != "http://$windows_host:7890" ];
+    git config --global proxy.http "http://$windows_host:7890"
+end

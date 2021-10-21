@@ -1,1 +1,1 @@
-bass source $USER_HOME/.cargo/env
+set -ga PATH $USER_HOME/.cargo/bin
