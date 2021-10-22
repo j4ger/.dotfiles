@@ -1,1 +1,0 @@
-set -ga PATH $USER_HOME/.cargo/bin
