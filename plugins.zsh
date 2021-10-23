@@ -1,4 +1,6 @@
 # configure ice for loading time optimizations
+zinit ice pick'poetry.zsh'
+zinit light sudosubin/zsh-poetry
 zinit light zsh-users/zsh-completions
 zinit light matthieusb/zsh-sdkman
 zpcompinit
