@@ -2,5 +2,5 @@
 
 usage:
 ```sh
-ln -s ~/.dotfiles/config.fish $USER_HOME/.config/fish/config.fish
+ln -s ~/.dotfiles/.zshrc $USER_HOME/.zshrc
 ```
