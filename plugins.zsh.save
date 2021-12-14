@@ -13,6 +13,4 @@ export PATH
 zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light skywind3000/z.lua
-zinit light changyuheng/fz
-export FZ_HISTORY_CD_CMD=_zlua
+zinit light 

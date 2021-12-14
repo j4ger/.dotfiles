@@ -22,3 +22,7 @@ alias plz="sudo"
 
 alias apu="sudo apt update"
 alias api="sudo apt install"
+
+alias vim=lvim
+alias nvim=lvim
+
