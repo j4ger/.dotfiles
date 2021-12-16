@@ -26,3 +26,6 @@ alias api="sudo apt install"
 alias vim=lvim
 alias nvim=lvim
 
+alias ls=exa
+alias find=fd
+
