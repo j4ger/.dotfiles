@@ -223,36 +223,42 @@ lvim.plugins = {
 		cmd = { "Bracey", "BracyStop", "BraceyReload", "BraceyEval" },
 		run = "npm install --prefix server",
 	},
-	{
-		"abecodes/tabout.nvim",
-		config = function()
-			require("tabout").setup({
-				tabkey = "<S-Tab>", -- key to trigger tabout, set to an empty string to disable
-				backwards_tabkey = "<C-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
-				act_as_tab = true, -- shift content if tab out is not possible
-				act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-				enable_backwards = true, -- well ...
-				completion = true, -- if the tabkey is used in a completion pum
-				tabouts = {
-					{ open = "'", close = "'" },
-					{ open = '"', close = '"' },
-					{ open = "`", close = "`" },
-					{ open = "(", close = ")" },
-					{ open = "[", close = "]" },
-					{ open = "{", close = "}" },
-				},
-				ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-				exclude = {}, -- tabout will ignore these filetypes
-			})
-		end,
-		requires = { "nvim-treesitter" },
-	},
+	-- Tabout doesn't seem to be working for now alongside Copilot and nvim-cmp
+	-- {
+	-- 	"abecodes/tabout.nvim",
+	-- 	config = function()
+	-- 		require("tabout").setup({
+	-- 			tabkey = "", -- key to trigger tabout, set to an empty string to disable
+	-- 			backwards_tabkey = "", -- key to trigger backwards tabout, set to an empty string to disable
+	-- 			act_as_tab = true, -- shift content if tab out is not possible
+	-- 			act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+	-- 			enable_backwards = true, -- well ...
+	-- 			completion = false, -- if the tabkey is used in a completion pum
+	-- 			tabouts = {
+	-- 				{ open = "'", close = "'" },
+	-- 				{ open = '"', close = '"' },
+	-- 				{ open = "`", close = "`" },
+	-- 				{ open = "(", close = ")" },
+	-- 				{ open = "[", close = "]" },
+	-- 				{ open = "{", close = "}" },
+	-- 			},
+	-- 			ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+	-- 			exclude = {}, -- tabout will ignore these filetypes
+	-- 		})
+	-- 	end,
+	-- 	requires = { "nvim-treesitter" },
+	-- },
 	{
 		"sindrets/diffview.nvim",
 		event = "BufRead",
 	},
 	{
 		"github/copilot.vim",
+		config = function()
+			vim.g.copilot_no_tab_map = true
+			vim.g.copilot_assume_mapped = true
+			vim.g.copilot_tab_fallback = ""
+		end,
 	},
 
 	-- {
@@ -283,6 +289,73 @@ lvim.plugins = {
 	-- 	end,
 	-- },
 }
+
+-- Let Copilot work with nvim-cmp
+local cmp = require("cmp")
+lvim.builtin.cmp.mapping["<Tab>"] = function(fallback)
+	if cmp.visible() then
+		cmp.select_next_item()
+	else
+		local copilot_keys = vim.fn["copilot#Accept"]()
+		if copilot_keys ~= "" then
+			vim.api.nvim_feedkeys(copilot_keys, "i", true)
+		else
+			fallback()
+		end
+	end
+end
+
+-- Fix tab clash issue between Copilot and nvim-cmp
+-- Credit: https://github.com/Dan-M/dotfiles/blob/0873c54f2b/.config/lvim/lua/user/lvimconfig.lua
+-- local coreCmp = require("lvim.core.cmp")
+
+-- -- Definitions for custom tab and shift_tab functions
+-- function tab(fallback)
+-- 	local methods = coreCmp.methods
+-- 	local cmp = require("cmp")
+-- 	local luasnip = require("luasnip")
+-- 	local copilot_keys = vim.fn["copilot#Accept"]()
+-- 	if cmp.visible() then
+-- 		cmp.select_next_item()
+-- 	elseif vim.api.nvim_get_mode().mode == "c" then
+-- 		fallback()
+-- 	elseif copilot_keys ~= "" then -- prioritise copilot over snippets
+-- 		-- Copilot keys do not need to be wrapped in termcodes
+-- 		vim.api.nvim_feedkeys(copilot_keys, "i", true)
+-- 	elseif luasnip.expandable() then
+-- 		luasnip.expand()
+-- 	elseif methods.jumpable() then
+-- 		luasnip.jump(1)
+-- 	elseif methods.check_backspace() then
+-- 		fallback()
+-- 	else
+-- 		methods.feedkeys("<Plug>(Tabout)", "")
+-- 	end
+-- end
+
+-- function shift_tab(fallback)
+-- 	local methods = coreCmp.methods
+-- 	local luasnip = require("luasnip")
+-- 	local cmp = require("cmp")
+-- 	if cmp.visible() then
+-- 		cmp.select_prev_item()
+-- 	elseif vim.api.nvim_get_mode().mode == "c" then
+-- 		fallback()
+-- 	elseif methods.jumpable(-1) then
+-- 		luasnip.jump(-1)
+-- 	else
+-- 		local copilot_keys = vim.fn["copilot#Accept"]()
+-- 		if copilot_keys ~= "" then
+-- 			methods.feedkeys(copilot_keys, "i")
+-- 		else
+-- 			methods.feedkeys("<Plug>(Tabout)", "")
+-- 		end
+-- 	end
+-- end
+
+-- local cmp = require("cmp")
+-- lvim.builtin.cmp.mapping["<Tab>"] = cmp.mapping(tab, { "i", "c" })
+-- lvim.builtin.cmp.mapping["<S-Tab>"] = cmp.mapping(shift_tab, { "i", "c" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
