@@ -11,7 +11,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "tokyonight"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -291,19 +291,21 @@ lvim.plugins = {
 }
 
 -- Let Copilot work with nvim-cmp
+-- wait a sec this still don't work when no suggestion is present
 local cmp = require("cmp")
-lvim.builtin.cmp.mapping["<Tab>"] = function(fallback)
+lvim.builtin.cmp.mapping["<Tab>"] = cmp.mapping(function(fallback)
+	local luasnip = require("luasnip")
+	local copilot_key = vim.fn["copilot#Accept"]("")
 	if cmp.visible() then
 		cmp.select_next_item()
+	elseif luasnip and luasnip.expand_or_jumpable() then
+		luasnip.expand_or_jump()
+	elseif copilot_key ~= "" then
+		api.nvim_feedkeys(copilot_key, "i", true)
 	else
-		local copilot_keys = vim.fn["copilot#Accept"]()
-		if copilot_keys ~= "" then
-			vim.api.nvim_feedkeys(copilot_keys, "i", true)
-		else
-			fallback()
-		end
+		fallback()
 	end
-end
+end)
 
 -- Fix tab clash issue between Copilot and nvim-cmp
 -- Credit: https://github.com/Dan-M/dotfiles/blob/0873c54f2b/.config/lvim/lua/user/lvimconfig.lua
@@ -366,7 +368,8 @@ end
 vim.g.transparent_enabled = true
 
 -- Set the theme for lualine
-vim.cmd("source ~/.dotfiles/nvim/evil_lualine.lua")
+-- vim.cmd("source ~/.dotfiles/nvim/evil_lualine.lua")
+lvim.builtin.lualine.options.theme = "tokyonight"
 
 -- Set custom startup text
 lvim.builtin.dashboard.custom_header = {
