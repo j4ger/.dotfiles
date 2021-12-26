@@ -1,11 +1,10 @@
-# configure ice for loading time optimizations
-zinit ice lucid wait='1'
-zinit light skywind3000/z.lua
+# zinit ice lucid wait='1'
+# zinit light skywind3000/z.lua
 
-zinit ice lucid wait='2'
-zinit light changyuheng/fz
+# zinit ice lucid wait='2'
+# zinit light changyuheng/fz
 
-export FZ_HISTORY_CD_CMD=_zlua
+# export FZ_HISTORY_CD_CMD=_zlua
 
 zinit ice lucid wait='0'
 zinit light Aloxaf/fzf-tab
@@ -38,4 +37,5 @@ zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 zinit ice lucid wait='1'
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 
-zpcompinit
+zinit ice wait="0" atinit="zpcompinit"
+eval "$(zoxide init zsh)"

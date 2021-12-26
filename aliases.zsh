@@ -29,3 +29,5 @@ alias nvim=lvim
 alias ls=exa
 alias find=fd
 alias cat=batcat
+
+alias z="zi"
