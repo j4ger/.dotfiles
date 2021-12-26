@@ -12,6 +12,8 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "tokyonight"
+vim.g.tokyonight_transparent = true
+vim.g.tokyonight_transparent_sidebar = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -41,16 +43,16 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- }
 
 -- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "+Trouble",
---   r = { "<cmd>Trouble lsp_references<cr>", "References" },
---   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Diagnostics" },
---   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
---   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
--- }
+lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["t"] = {
+	name = "+Trouble",
+	r = { "<cmd>Trouble lsp_references<cr>", "References" },
+	f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+	d = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Diagnostics" },
+	q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+	l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+	w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
+}
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -178,7 +180,7 @@ lvim.plugins = {
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
 	},
-	{ "xiyaowong/nvim-transparent" },
+	-- { "xiyaowong/nvim-transparent" },
 	{
 		"karb94/neoscroll.nvim",
 		event = "WinScrolled",
@@ -301,7 +303,7 @@ lvim.builtin.cmp.mapping["<Tab>"] = cmp.mapping(function(fallback)
 	elseif luasnip and luasnip.expand_or_jumpable() then
 		luasnip.expand_or_jump()
 	elseif copilot_key ~= "" then
-		api.nvim_feedkeys(copilot_key, "i", true)
+		vim.api.nvim_feedkeys(copilot_key, "i", true)
 	else
 		fallback()
 	end
@@ -365,7 +367,7 @@ end)
 -- }
 
 -- Set background_colour to transparent by default
-vim.g.transparent_enabled = true
+-- vim.g.transparent_enabled = true
 
 -- Set the theme for lualine
 -- vim.cmd("source ~/.dotfiles/nvim/evil_lualine.lua")
