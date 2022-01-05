@@ -290,6 +290,7 @@ lvim.plugins = {
 	-- 		-- vim.cmd("let g:minimap_auto_start_win_enter = 1")
 	-- 	end,
 	-- },
+	{ "stevearc/dressing.nvim" },
 }
 
 -- Let Copilot work with nvim-cmp
