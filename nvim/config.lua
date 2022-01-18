@@ -86,7 +86,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- generic LSP settings
 
 -- ---@usage disable automatic installation of servers
--- lvim.lsp.automatic_servers_installation = false
+lvim.lsp.automatic_servers_installation = false
 
 -- ---@usage Select which servers should be configured manually. Requires `:LvimCacheRest` to take effect.
 -- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
@@ -160,7 +160,7 @@ lvim.lsp.override = { "rust" }
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{
-		exe = "prettier",
+		exe = "prettierd",
 		filetypes = { "typescript", "javascript", "vue", "json" },
 	},
 	{ exe = "stylua", filetypes = { "lua" } },
@@ -172,6 +172,14 @@ formatters.setup({
 -- linters.setup {
 
 -- }
+
+-- Fix Lsp formatter conflict with prettier
+lvim.lsp.on_attach_callback = function(client, _)
+	if client.name == "tsserver" or client.name == "jsonls" or client.name == "rome" then
+		client.resolved_capabilities.document_formatting = false
+		client.resolved_capabilities.document_range_formatting = false
+	end
+end
 
 -- Additional Plugins
 lvim.plugins = {
