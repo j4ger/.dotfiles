@@ -48,7 +48,7 @@ lvim.builtin.which_key.mappings["t"] = {
 	name = "+Trouble",
 	r = { "<cmd>Trouble lsp_references<cr>", "References" },
 	f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-	d = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Diagnostics" },
+	d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
 	q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
 	l = { "<cmd>Trouble loclist<cr>", "LocationList" },
 	w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
@@ -161,7 +161,7 @@ local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
 	{
 		exe = "prettierd",
-		filetypes = { "typescript", "javascript", "vue", "json" },
+		filetypes = { "typescript", "javascript", "vue", "json", "html" },
 	},
 	{ exe = "stylua", filetypes = { "lua" } },
 	{ exe = "black", filetypes = { "python" } },
@@ -298,7 +298,6 @@ lvim.plugins = {
 	-- 		-- vim.cmd("let g:minimap_auto_start_win_enter = 1")
 	-- 	end,
 	-- },
-	{ "stevearc/dressing.nvim" },
 }
 
 -- Let Copilot work with nvim-cmp
