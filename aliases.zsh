@@ -23,10 +23,6 @@ alias plz="sudo"
 alias apu="sudo apt update"
 alias api="sudo apt install"
 
-alias vim=lvim
-alias nvim=lvim
-alias v="lvim ."
-
 alias ls=exa
 alias find=fd
 alias cat=batcat
