@@ -8,7 +8,8 @@ alias dev="cd ~/dev"
 
 # Utilities
 alias g="git"
-alias grep="grep --color=auto"
+alias lg="lazygit"
+alias grep="rg"
 
 alias ll="ls -al"
 alias ln="ln -v"
@@ -28,3 +29,4 @@ alias find=fd
 alias cat=batcat
 
 alias z="zi"
+alias v="nvim ."

@@ -8,6 +8,7 @@
   enable_tabline_filetype_icon = true
   enable_statusline_mode = false
   vim_help_language = "cn"
+  autocomplete_method = "coc"
   bootstrap_after = "bootstrap#after"
 
 [[layers]]
@@ -26,6 +27,7 @@
 
 [[layers]]
   name = 'git'
+
 [[layers]]
   name = 'VersionControl'
 
