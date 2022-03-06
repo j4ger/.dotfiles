@@ -1,5 +1,5 @@
 [options]
-  colorscheme = "nord"
+  colorscheme = "tokyonight"
   colorscheme_bg = "dark"
   enable_guicolors = true
   statusline_separator = "arrow"
@@ -9,6 +9,8 @@
   enable_statusline_mode = false
   vim_help_language = "cn"
   autocomplete_method = "coc"
+  lint_engine = "ale"
+  bootstrap_before = "bootstrap#before"
   bootstrap_after = "bootstrap#after"
 
 [[layers]]
@@ -22,7 +24,7 @@
 
 [[layers]]
   name = 'shell'
-  default_position = 'top'
+  default_position = 'float'
   default_height = 30
 
 [[layers]]
@@ -35,11 +37,14 @@
   name = "treesitter"
 
 [[layers]]
-  name = "chinese"
+  name = "denite"
 
 [[layers]]
-  name = "format"
-  format_on_save = true
+  name = "chinese"
+
+# [[layers]]
+  # name = "format"
+  # format_on_save = true
 
 [[layers]]
   name = "debug"
@@ -76,5 +81,5 @@
     rust = ["rust-analyzer"]
 
 [[custom_plugins]]
-  repo = "arcticicestudio/nord-vim"
+  repo = "folke/tokyonight.nvim"
   merged = 0
