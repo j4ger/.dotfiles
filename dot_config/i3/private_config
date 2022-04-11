@@ -163,7 +163,7 @@ for_window [class="qq.exe"] border none
 for_window [class="fcitx"] border none
 
 # Fix certain windows to their targeted workspace
-assign [window_role="browser"] 2
+assign [class="firefox"] 2
 assign [class="pcmanfm"] 3
 assign [instance="neovide"] 5
 assign [class="qq.exe"] 6
