@@ -1,0 +1,9 @@
+http_proxy=http://localhost:7890
+https_proxy=http://localhost:7890
+all_proxy=http://localhost:7890
+no_proxy="localhost,127.0.0.1,localaddress"
+QT_STYLE_OVERRIDE=kvantum
+OPENCV_LOG_LEVEL=ERROR
+GTK_IM_MODULE=fcitx5
+QT_IM_MODULE=fcitx5
+XMODIFIERS=@im=fcitx5

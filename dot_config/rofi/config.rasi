@@ -1,0 +1,5 @@
+@theme "~/.local/share/rofi/themes/rounded-nord-dark.rasi"
+configuration {
+	modi: "window,drun,run,ssh,combi";
+	combi-modi: "window,drun,ssh,run";
+}

@@ -1,0 +1,52 @@
+# path configs
+path+=~/.local/bin
+path+=~/.local/n/bin
+
+export PATH
+
+# history config
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt appendhistory
+
+# default applications
+export EDITOR=neovide
+export BROWSER=firefox
+
+# setup completion
+autoload -Uz compinit && compinit
+
+# start sheldon plugin manager
+eval "$(sheldon source)"
+
+# load thefuck support
+zsh-defer -c 'eval "$(thefuck --alias)"'
+
+# start starship prompt
+eval "$(starship init zsh)"
+
+# start zoxide
+eval "$(zoxide init zsh)"
+
+# configure fzf to use fd
+export FZF_DEFAULT_COMMAND="fd --type f"
+
+# aliases
+## navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+## utilities
+alias cat="bat"
+alias grep="rg"
+alias g="git"
+alias lg="lazygit"
+alias mkdir="mkdir -p"
+alias chmox="chmod +x"
+alias gp="git push"
+alias gf="git fetch"
+alias gc="git commit -m"
+alias ga="git add"
