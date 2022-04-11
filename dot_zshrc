@@ -11,7 +11,7 @@ export SAVEHIST=10000
 setopt appendhistory
 
 # default applications
-export EDITOR=neovide
+export EDITOR="neovide --multigrid"
 export BROWSER=firefox
 
 # setup completion
@@ -50,3 +50,8 @@ alias gp="git push"
 alias gf="git fetch"
 alias gc="git commit -m"
 alias ga="git add"
+
+# neovide multigrid support
+alias neovide="neovide --multigrid"
+alias v="neovide ."
+alias vim="neovide"
