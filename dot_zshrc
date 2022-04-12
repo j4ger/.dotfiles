@@ -1,6 +1,7 @@
 # path configs
 path+=~/.local/bin
 path+=~/.local/n/bin
+path+=~/.yarn/bin
 
 export PATH
 
@@ -14,11 +15,11 @@ setopt appendhistory
 export EDITOR="neovide --multigrid"
 export BROWSER=firefox
 
-# setup completion
-autoload -Uz compinit && compinit
-
 # start sheldon plugin manager
 eval "$(sheldon source)"
+
+# setup completion
+autoload -Uz compinit && compinit
 
 # load thefuck support
 zsh-defer -c 'eval "$(thefuck --alias)"'

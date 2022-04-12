@@ -7,6 +7,7 @@ return {
   }), 
   font_size = 14.0,
   enable_tab_bar = false,
+  enable_scroll_bar = false,
   window_background_opacity = 0.6,
   color_scheme = "nord",
 }

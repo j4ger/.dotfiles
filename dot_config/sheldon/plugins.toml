@@ -38,7 +38,7 @@ github = "zsh-users/zsh-completions"
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 
-[plugins.rust-zsh-completions]
+[plugins.rust-completions]
 github = "ryutok/rust-zsh-completions"
 
 [plugins.zsh-vi-mode]
