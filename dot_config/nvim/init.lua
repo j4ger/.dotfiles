@@ -36,6 +36,7 @@ require("jetpack").setup({
 	"hrsh7th/nvim-cmp",
 	"hrsh7th/cmp-vsnip",
 	"hrsh7th/vim-vsnip",
+	"hrsh7th/vim-vsnip-integ",
 	"onsails/lspkind-nvim",
 	"sbdchd/neoformat",
 	"ggandor/lightspeed.nvim",
@@ -44,8 +45,16 @@ require("jetpack").setup({
 		run = ":call fzf#install()",
 	},
 	"junegunn/fzf.vim",
+	"rafamadriz/friendly-snippets",
 })
 require("jetpack").optimization = 1
+
+-- fzf action
+vim.g.fzf_action = {
+	enter = "tab split",
+	["ctrl-x"] = "split",
+	["ctrl-v"] = "vsplit",
+}
 
 -- LSP configs
 require("fidget").setup({})
@@ -101,6 +110,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "vsnip" },
+		{ name = "path" },
 	}, {
 		{ name = "buffer" },
 	}),
@@ -187,6 +197,9 @@ require("lspconfig").volar.setup({
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
 	capabilities = capabilities,
 })
+vim.g.vsnip_filetypes = {
+	vue = { "javascript", "html" },
+}
 
 -- file tree
 require("nvim-tree").setup({
@@ -290,10 +303,15 @@ whichkey.register({
 		c = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go to declaration" },
 		f = { "<cmd>Format<cr>", "format current buffer" },
 	},
+	b = {
+		name = "buffers",
+		d = { "<cmd>q<cr>", "close current buffer" },
+	},
 }, { prefix = "<leader>" })
 
 whichkey.register({
 	["<c-s>"] = { "<cmd>w<cr>", "save file" },
+	q = { "<cmd>q<cr>", "quit" },
 })
 
 whichkey.register({
@@ -308,6 +326,7 @@ whichkey.register({
 		["7"] = { "<cmd>tabn 7<cr>", "switch to tab 7" },
 		["8"] = { "<cmd>tabn 8<cr>", "switch to tab 8" },
 		["9"] = { "<cmd>tabn 9<cr>", "switch to tab 9" },
+		d = { "<cmd>q<cr>", "close current buffer" },
 	},
 })
 -- color scheme

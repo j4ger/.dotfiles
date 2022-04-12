@@ -2,7 +2,6 @@ http_proxy=http://localhost:7890
 https_proxy=http://localhost:7890
 all_proxy=http://localhost:7890
 no_proxy="localhost,127.0.0.1,localaddress"
-XDG_CONFIG_HOME=~/.config
 QT_STYLE_OVERRIDE=kvantum
 OPENCV_LOG_LEVEL=ERROR
 GTK_IM_MODULE=fcitx5
