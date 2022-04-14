@@ -16,7 +16,6 @@ vim.g.autoread = true
 require("jetpack").setup({
 	"kyazdani42/nvim-web-devicons",
 	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
-	"romgrk/nvim-treesitter-context",
 	"kyazdani42/nvim-tree.lua",
 	"folke/which-key.nvim",
 	"itchyny/lightline.vim",
@@ -37,15 +36,22 @@ require("jetpack").setup({
 	"hrsh7th/cmp-vsnip",
 	"hrsh7th/vim-vsnip",
 	"hrsh7th/vim-vsnip-integ",
+	"hrsh7th/cmp-nvim-lsp-signature-help",
 	"onsails/lspkind-nvim",
 	"sbdchd/neoformat",
 	"ggandor/lightspeed.nvim",
+	"b3nj5m1n/kommentary",
+	"windwp/nvim-ts-autotag",
+	"windwp/nvim-autopairs",
 	{
 		"junegunn/fzf",
 		run = ":call fzf#install()",
 	},
 	"junegunn/fzf.vim",
 	"rafamadriz/friendly-snippets",
+	"abecodes/tabout.nvim",
+	"folke/trouble.nvim",
+	"tpope/vim-surround",
 })
 require("jetpack").optimization = 1
 
@@ -56,17 +62,17 @@ vim.g.fzf_action = {
 	["ctrl-v"] = "vsplit",
 }
 
+-- auto close tag & brackets
+require("nvim-ts-autotag").setup({})
+require("nvim-autopairs").setup({})
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+
 -- LSP configs
 require("fidget").setup({})
 
 require("lspsaga").setup({})
 
 -- completion configs
-local has_words_before = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
 local feedkey = function(key, mode)
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
@@ -93,17 +99,17 @@ cmp.setup({
 				cmp.select_next_item()
 			elseif vim.fn["vsnip#available"](1) == 1 then
 				feedkey("<Plug>(vsnip-expand-or-jump)", "")
-			elseif has_words_before() then
-				cmp.complete()
 			else
 				fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 			end
 		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function()
+		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
 			elseif vim.fn["vsnip#jumpable"](-1) == 1 then
 				feedkey("<Plug>(vsnip-jump-prev)", "")
+			else
+				fallback()
 			end
 		end, { "i", "s" }),
 	},
@@ -111,6 +117,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "vsnip" },
 		{ name = "path" },
+		{ name = "nvim_lsp_signature_help" },
 	}, {
 		{ name = "buffer" },
 	}),
@@ -121,6 +128,9 @@ cmp.setup({
 		}),
 	},
 })
+
+-- auto pair within completion
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 
 -- configuration for specific filetypes
 cmp.setup.filetype("gitcommit", {
@@ -145,6 +155,20 @@ cmp.setup.cmdline(":", {
 	}, {
 		{ name = "cmdline" },
 	}),
+})
+
+-- tabout config
+require("tabout").setup({})
+
+-- trouble list
+require("trouble").setup({})
+
+-- treesitter config
+require("nvim-treesitter.configs").setup({
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
 })
 
 -- setup lspconfig and formatter
@@ -307,11 +331,15 @@ whichkey.register({
 		name = "buffers",
 		d = { "<cmd>q<cr>", "close current buffer" },
 	},
+	e = {
+		name = "trouble list",
+		o = { "<cmd>TroubleToggle<cr>", "toggle trouble" },
+		r = { "<cmd>TroubleRefresh<cr>", "refresh trouble" },
+	},
 }, { prefix = "<leader>" })
 
 whichkey.register({
 	["<c-s>"] = { "<cmd>w<cr>", "save file" },
-	q = { "<cmd>q<cr>", "quit" },
 })
 
 whichkey.register({

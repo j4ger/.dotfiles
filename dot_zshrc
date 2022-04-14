@@ -22,7 +22,7 @@ eval "$(sheldon source)"
 autoload -Uz compinit && compinit
 
 # load thefuck support
-zsh-defer -c 'eval "$(thefuck --alias)"'
+zsh-defer -c 'eval "$(thefuck --alias f)"'
 
 # start starship prompt
 eval "$(starship init zsh)"
