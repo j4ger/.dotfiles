@@ -332,7 +332,7 @@ whichkey.register({
 		d = { "<cmd>q<cr>", "close current buffer" },
 	},
 	e = {
-		name = "trouble list",
+		name = "trouble",
 		o = { "<cmd>TroubleToggle<cr>", "toggle trouble" },
 		r = { "<cmd>TroubleRefresh<cr>", "refresh trouble" },
 	},
