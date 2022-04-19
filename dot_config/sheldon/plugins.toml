@@ -38,6 +38,9 @@ github = "zsh-users/zsh-completions"
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 
+[plugins.zsh-history-substring-search]
+github = "zsh-users/zsh-history-substring-search"
+
 [plugins.rust-completions]
 github = "ryutok/rust-zsh-completions"
 

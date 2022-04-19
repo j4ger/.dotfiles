@@ -16,6 +16,9 @@ vim.g.autoread = true
 require("jetpack").setup({
 	"kyazdani42/nvim-web-devicons",
 	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+	"nvim-treesitter/nvim-treesitter-textobjects",
+	"wellle/context.vim",
+	"ray-x/lsp_signature.nvim",
 	"kyazdani42/nvim-tree.lua",
 	"folke/which-key.nvim",
 	"itchyny/lightline.vim",
@@ -36,7 +39,6 @@ require("jetpack").setup({
 	"hrsh7th/cmp-vsnip",
 	"hrsh7th/vim-vsnip",
 	"hrsh7th/vim-vsnip-integ",
-	"hrsh7th/cmp-nvim-lsp-signature-help",
 	"onsails/lspkind-nvim",
 	"sbdchd/neoformat",
 	"ggandor/lightspeed.nvim",
@@ -66,6 +68,9 @@ vim.g.fzf_action = {
 require("nvim-ts-autotag").setup({})
 require("nvim-autopairs").setup({})
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+
+-- enable echodoc
+vim.g.echodoc_enable_at_startup = true
 
 -- LSP configs
 require("fidget").setup({})
@@ -117,7 +122,6 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "vsnip" },
 		{ name = "path" },
-		{ name = "nvim_lsp_signature_help" },
 	}, {
 		{ name = "buffer" },
 	}),
@@ -169,10 +173,66 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		additional_vim_regex_highlighting = false,
 	},
+	textobjects = {
+		select = {
+			enable = true,
+
+			-- Automatically jump forward to textobj, similar to targets.vim
+			lookahead = true,
+
+			keymaps = {
+				-- You can use the capture groups defined in textobjects.scm
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+			},
+		},
+		swap = {
+			enable = true,
+			swap_next = {
+				["<leader>a"] = "@parameter.inner",
+			},
+			swap_previous = {
+				["<leader>A"] = "@parameter.inner",
+			},
+		},
+		move = {
+			enable = true,
+			set_jumps = true, -- whether to set jumps in the jumplist
+			goto_next_start = {
+				["]m"] = "@function.outer",
+				["]]"] = "@class.outer",
+			},
+			goto_next_end = {
+				["]M"] = "@function.outer",
+				["]["] = "@class.outer",
+			},
+			goto_previous_start = {
+				["[m"] = "@function.outer",
+				["[["] = "@class.outer",
+			},
+			goto_previous_end = {
+				["[M"] = "@function.outer",
+				["[]"] = "@class.outer",
+			},
+		},
+		lsp_interop = {
+			enable = true,
+			border = "none",
+			peek_definition_code = {
+				["<leader>df"] = "@function.outer",
+				["<leader>dF"] = "@class.outer",
+			},
+		},
+	},
 })
 
--- setup lspconfig and formatter
+-- setup lspconfig, formatter and signature display
+require("lsp_signature").setup({})
+local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- format on save
 vim.api.nvim_exec(
@@ -190,7 +250,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require("lspconfig").sumneko_lua.setup({
+lspconfig.sumneko_lua.setup({
 	settings = {
 		Lua = {
 			runtime = {
@@ -212,18 +272,55 @@ require("lspconfig").sumneko_lua.setup({
 })
 
 -- typescript, javascript
-require("lspconfig").tsserver.setup({
+lspconfig.tsserver.setup({
 	capabilities = capabilities,
 })
 
 -- vue
-require("lspconfig").volar.setup({
+lspconfig.volar.setup({
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
 	capabilities = capabilities,
 })
 vim.g.vsnip_filetypes = {
 	vue = { "javascript", "html" },
 }
+
+-- emmet
+local configs = require("lspconfig.configs")
+
+if not configs.ls_emmet then
+	configs.ls_emmet = {
+		default_config = {
+			cmd = { "ls_emmet", "--stdio" },
+			filetypes = {
+				"html",
+				"css",
+				"scss",
+				"javascript",
+				"javascriptreact",
+				"typescript",
+				"typescriptreact",
+				"haml",
+				"xml",
+				"xsl",
+				"pug",
+				"slim",
+				"sass",
+				"stylus",
+				"less",
+				"sss",
+				"hbs",
+				"handlebars",
+			},
+			root_dir = function(fname)
+				return vim.loop.cwd()
+			end,
+			settings = {},
+		},
+	}
+end
+
+lspconfig.ls_emmet.setup({ capabilities = capabilities })
 
 -- file tree
 require("nvim-tree").setup({
@@ -329,13 +426,14 @@ whichkey.register({
 	},
 	b = {
 		name = "buffers",
-		d = { "<cmd>q<cr>", "close current buffer" },
+		d = { "<cmd>tabc<cr>", "close current buffer" },
 	},
 	e = {
 		name = "trouble",
 		o = { "<cmd>TroubleToggle<cr>", "toggle trouble" },
 		r = { "<cmd>TroubleRefresh<cr>", "refresh trouble" },
 	},
+	q = { "<cmd>tabc<cr>", "close tab" },
 }, { prefix = "<leader>" })
 
 whichkey.register({
