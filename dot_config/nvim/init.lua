@@ -45,11 +45,7 @@ require("jetpack").setup({
 	"b3nj5m1n/kommentary",
 	"windwp/nvim-ts-autotag",
 	"windwp/nvim-autopairs",
-	{
-		"junegunn/fzf",
-		run = ":call fzf#install()",
-	},
-	"junegunn/fzf.vim",
+	"ibhagwan/fzf-lua",
 	"rafamadriz/friendly-snippets",
 	"abecodes/tabout.nvim",
 	"folke/trouble.nvim",
@@ -57,12 +53,15 @@ require("jetpack").setup({
 })
 require("jetpack").optimization = 1
 
--- fzf action
-vim.g.fzf_action = {
-	enter = "tab split",
-	["ctrl-x"] = "split",
-	["ctrl-v"] = "vsplit",
-}
+-- fzf actions
+local actions = require("fzf-lua.actions")
+require("fzf-lua").setup({
+	actions = {
+		files = {
+			["default"] = actions.file_tabedit,
+		},
+	},
+})
 
 -- auto close tag & brackets
 require("nvim-ts-autotag").setup({})
@@ -398,7 +397,8 @@ whichkey.register({
 		name = "file tree",
 		o = { "<cmd>NvimTreeToggle<cr>", "toggle file tree" },
 		t = { "<cmd>NvimTreeFocus<cr>", "focus file tree" },
-		f = { "<cmd>Files<cr>", "show fzf files" },
+		f = { "<cmd>lua require('fzf-lua').files()<cr>", "show fzf files" },
+		g = { "<cmd>lua require('fzf-lua').live_grep()<cr>", "show fzf live grep" },
 	},
 	t = {
 		name = "terminal",
