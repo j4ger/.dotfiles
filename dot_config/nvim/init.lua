@@ -8,6 +8,7 @@ vim.g.neovide_fullscreen = true
 vim.o.guifont = "Fira Code Retina:h10,Noto Sans CJK SC:h10"
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.o.laststatus = 3
 
 -- autoread
 vim.g.autoread = true
