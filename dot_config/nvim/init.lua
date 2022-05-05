@@ -49,8 +49,14 @@ require("jetpack").setup({
 	"ibhagwan/fzf-lua",
 	"rafamadriz/friendly-snippets",
 	"abecodes/tabout.nvim",
+	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 	"folke/trouble.nvim",
+	"folke/twilight.nvim",
 	"tpope/vim-surround",
+	"jose-elias-alvarez/nvim-lsp-ts-utils",
+	"m-demare/hlargs.nvim",
+	"tversteeg/registers.nvim",
+	"winston0410/range-highlight.nvim",
 })
 require("jetpack").optimization = 1
 
@@ -234,6 +240,16 @@ local lspconfig = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+require("twilight").setup({})
+vim.api.nvim_exec(
+	[[
+autocmd VimEnter * Twilight
+]],
+	true
+)
+
+require("hlargs").setup({})
+
 -- format on save
 vim.api.nvim_exec(
 	[[
@@ -274,6 +290,62 @@ lspconfig.sumneko_lua.setup({
 -- typescript, javascript
 lspconfig.tsserver.setup({
 	capabilities = capabilities,
+	init_options = require("nvim-lsp-ts-utils").init_options,
+	on_attach = function(client)
+		local ts_utils = require("nvim-lsp-ts-utils")
+
+		-- defaults
+		ts_utils.setup({
+			debug = false,
+			disable_commands = false,
+			enable_import_on_completion = false,
+
+			-- import all
+			import_all_timeout = 5000, -- ms
+			-- lower numbers = higher priority
+			import_all_priorities = {
+				same_file = 1, -- add to existing import statement
+				local_files = 2, -- git files or files with relative path markers
+				buffer_content = 3, -- loaded buffer content
+				buffers = 4, -- loaded buffer names
+			},
+			import_all_scan_buffers = 100,
+			import_all_select_source = false,
+			-- if false will avoid organizing imports
+			always_organize_imports = true,
+
+			-- filter diagnostics
+			filter_out_diagnostics_by_severity = {},
+			filter_out_diagnostics_by_code = {},
+
+			-- inlay hints
+			auto_inlay_hints = true,
+			inlay_hints_highlight = "Comment",
+			inlay_hints_priority = 200, -- priority of the hint extmarks
+			inlay_hints_throttle = 150, -- throttle the inlay hint request
+			inlay_hints_format = { -- format options for individual hint kind
+				Type = {},
+				Parameter = {},
+				Enum = {},
+				-- Example format customization for `Type` kind:
+				-- Type = {
+				--     highlight = "Comment",
+				--     text = function(text)
+				--         return "->" .. text:sub(2)
+				--     end,
+				-- },
+			},
+
+			-- update imports on file move
+			update_imports_on_move = true,
+			require_confirmation_on_move = false,
+			watch_dir = nil,
+		})
+
+		-- required to fix code action ranges and filter diagnostics
+		ts_utils.setup_client(client)
+		local opts = { silent = true }
+	end,
 })
 
 -- vue
@@ -321,6 +393,11 @@ if not configs.ls_emmet then
 end
 
 lspconfig.ls_emmet.setup({ capabilities = capabilities })
+
+require("lsp_lines").register_lsp_virtual_lines()
+vim.diagnostic.config({
+	virtual_text = false,
+})
 
 -- file tree
 require("nvim-tree").setup({
