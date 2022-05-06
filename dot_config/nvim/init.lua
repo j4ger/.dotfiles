@@ -15,6 +15,7 @@ vim.g.autoread = true
 
 -- plugins
 require("jetpack").setup({
+	"nvim-lua/plenary.nvim",
 	"kyazdani42/nvim-web-devicons",
 	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
 	"nvim-treesitter/nvim-treesitter-textobjects",
