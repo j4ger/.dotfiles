@@ -1,7 +1,7 @@
 [user]
 	email = xiayuxuan@live.com
 	name = j4ger
-	signingkey = 745F6D9739CF6FC5
+	signingkey = 562EA1B0BA9968A0
 [commit]
 	gpgsign = true
 [credential]

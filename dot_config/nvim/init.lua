@@ -5,7 +5,7 @@ vim.g.neovide_cursor_vfx_mode = "pixiedust"
 vim.g.neovide_fullscreen = true
 
 -- appearance tweaks
-vim.o.guifont = "Fira Code Retina:h10,Noto Sans CJK SC:h10"
+vim.o.guifont = "FiraCode Nerd Font Mono Retina:h10,Noto Sans Mono CJK SC:h10"
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.laststatus = 3
@@ -42,7 +42,7 @@ require("jetpack").setup({
 	"hrsh7th/vim-vsnip",
 	"hrsh7th/vim-vsnip-integ",
 	"onsails/lspkind-nvim",
-	"sbdchd/neoformat",
+	"jose-elias-alvarez/null-ls.nvim",
 	"ggandor/lightspeed.nvim",
 	"b3nj5m1n/kommentary",
 	"windwp/nvim-ts-autotag",
@@ -67,7 +67,17 @@ require("fzf-lua").setup({
 	actions = {
 		files = {
 			["default"] = actions.file_tabedit,
+			["ctrl-s"] = actions.file_split,
+			["ctrl-v"] = actions.file_vsplit,
 		},
+		buffers = {
+			["default"] = actions.buf_edit,
+			["ctrl-s"] = actions.buf_split,
+			["ctrl-v"] = actions.buf_vsplit,
+		},
+	},
+	lsp = {
+		async_or_timeout = 3000,
 	},
 })
 
@@ -237,9 +247,43 @@ require("nvim-treesitter.configs").setup({
 
 -- setup lspconfig, formatter and signature display
 require("lsp_signature").setup({})
+
 local lspconfig = require("lspconfig")
+
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+local null_ls = require("null-ls")
+
+null_ls.setup({
+	sources = {
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.diagnostics.eslint_d,
+		null_ls.builtins.formatting.prettier,
+		null_ls.builtins.formatting.verible_verilog_format,
+	},
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					vim.lsp.buf.format({
+						bufnr = bufnr,
+						filter = function(clients)
+							return vim.tbl_filter(function(item)
+								return item.name == "null-ls"
+							end, clients)
+						end,
+					})
+				end,
+			})
+		end
+	end,
+})
 
 require("twilight").setup({})
 vim.api.nvim_exec(
@@ -250,17 +294,6 @@ autocmd VimEnter * Twilight
 )
 
 require("hlargs").setup({})
-
--- format on save
-vim.api.nvim_exec(
-	[[
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
-]],
-	true
-)
 
 -- lua
 local runtime_path = vim.split(package.path, ";")
@@ -395,6 +428,11 @@ end
 
 lspconfig.ls_emmet.setup({ capabilities = capabilities })
 
+-- verilog
+require("lspconfig").svls.setup({
+	capabilities = capabilities,
+})
+
 require("lsp_lines").register_lsp_virtual_lines()
 vim.diagnostic.config({
 	virtual_text = false,
@@ -503,10 +541,7 @@ whichkey.register({
 		c = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "go to declaration" },
 		f = { "<cmd>Format<cr>", "format current buffer" },
 	},
-	b = {
-		name = "buffers",
-		d = { "<cmd>tabc<cr>", "close current buffer" },
-	},
+	b = { "<cmd>lua require('fzf-lua').buffers()<cr>", "switch buffers" },
 	e = {
 		name = "trouble",
 		o = { "<cmd>TroubleToggle<cr>", "toggle trouble" },
