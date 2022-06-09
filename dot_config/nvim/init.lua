@@ -33,14 +33,16 @@ require("jetpack").setup({
 	"j-hui/fidget.nvim",
 	"tami5/lspsaga.nvim",
 	"nvim-lua/lsp_extensions.nvim",
-	"hrsh7th/cmp-nvim-lsp",
+	--[[ "hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-cmdline",
 	"hrsh7th/nvim-cmp",
 	"hrsh7th/cmp-vsnip",
 	"hrsh7th/vim-vsnip",
-	"hrsh7th/vim-vsnip-integ",
+	"hrsh7th/vim-vsnip-integ", ]]
+	{ "ms-jpq/coq_nvim", branch = "coq" },
+	{ "ms-jpq/coq.artifacts", branch = "artifacts" },
 	"onsails/lspkind-nvim",
 	"jose-elias-alvarez/null-ls.nvim",
 	"ggandor/lightspeed.nvim",
@@ -84,7 +86,7 @@ require("fzf-lua").setup({
 -- auto close tag & brackets
 require("nvim-ts-autotag").setup({})
 require("nvim-autopairs").setup({})
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 -- enable echodoc
 vim.g.echodoc_enable_at_startup = true
@@ -94,7 +96,7 @@ require("fidget").setup({})
 
 require("lspsaga").setup({})
 
--- completion configs
+--[[ -- completion configs
 local feedkey = function(key, mode)
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
@@ -176,7 +178,7 @@ cmp.setup.cmdline(":", {
 	}, {
 		{ name = "cmdline" },
 	}),
-})
+}) ]]
 
 -- tabout config
 require("tabout").setup({})
@@ -249,9 +251,7 @@ require("nvim-treesitter.configs").setup({
 require("lsp_signature").setup({})
 
 local lspconfig = require("lspconfig")
-
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local coq = require("coq")
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
@@ -300,7 +300,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-lspconfig.sumneko_lua.setup({
+lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
 	settings = {
 		Lua = {
 			runtime = {
@@ -319,11 +319,10 @@ lspconfig.sumneko_lua.setup({
 		},
 	},
 	capabilities = capabilities,
-})
+}))
 
 -- typescript, javascript
-lspconfig.tsserver.setup({
-	capabilities = capabilities,
+lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({
 	init_options = require("nvim-lsp-ts-utils").init_options,
 	on_attach = function(client)
 		local ts_utils = require("nvim-lsp-ts-utils")
@@ -380,13 +379,12 @@ lspconfig.tsserver.setup({
 		ts_utils.setup_client(client)
 		local opts = { silent = true }
 	end,
-})
+}))
 
 -- vue
-lspconfig.volar.setup({
+lspconfig.volar.setup(coq.lsp_ensure_capabilities({
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
-	capabilities = capabilities,
-})
+}))
 vim.g.vsnip_filetypes = {
 	vue = { "javascript", "html" },
 }
@@ -426,12 +424,10 @@ if not configs.ls_emmet then
 	}
 end
 
-lspconfig.ls_emmet.setup({ capabilities = capabilities })
+lspconfig.ls_emmet.setup(coq.lsp_ensure_capabilities({}))
 
 -- verilog
-require("lspconfig").svls.setup({
-	capabilities = capabilities,
-})
+require("lspconfig").verible.setup(coq.lsp_ensure_capabilities({}))
 
 require("lsp_lines").register_lsp_virtual_lines()
 vim.diagnostic.config({
@@ -527,11 +523,7 @@ whichkey.register({
 		name = "git",
 		l = { "<cmd>lua _lazygit_toggle()<cr>", "open lazygit" },
 	},
-	w = {
-		name = "window",
-		s = { "<cmd>lua require('nvim-window').pick()<cr>", "open window switcher" },
-		d = { "<cmd>close<cr>", "close current window" },
-	},
+	w = { "<cmd>lua require('nvim-window').pick()<cr>", "open window switcher" },
 	l = {
 		name = "LSP actions",
 		r = { "<cmd>Lspsaga rename<cr>", "rename" },
@@ -569,5 +561,9 @@ whichkey.register({
 		d = { "<cmd>q<cr>", "close current buffer" },
 	},
 })
+
 -- color scheme
 vim.cmd("colorscheme nord")
+
+-- start autocomplete
+vim.cmd("COQnow")

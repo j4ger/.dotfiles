@@ -13,7 +13,7 @@ export SAVEHIST=10000
 setopt appendhistory
 
 # default applications
-export EDITOR="neovide --multigrid --neovim-bin ~/nvim.appimage"
+export EDITOR="neovide --multigrid --neovim-bin /home/j4ger/nvim.appimage"
 export BROWSER=firefox
 
 # start sheldon plugin manager
@@ -65,7 +65,7 @@ bindkey '^[[B' history-substring-search-down
 
 # nnn plugins
 export NNN_FIFO=/tmp/nnn.fifo
-export NNN_PLUG='d:dragdrop;s:!qrcp $nnn;r:!qrcp receive;q:preview-tui;e:suedit;w:wallpaper;p:rsynccp;'
+export NNN_PLUG='d:dragdrop;s:!qrcp $nnn;r:!qrcp receive;q:preview-tui;e:suedit;w:wallpaper;p:rsynccp;c:!wl-copy < $nnn;'
 
 # nnn quit_cd
 # source: https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_zsh
