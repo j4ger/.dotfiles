@@ -21,18 +21,17 @@ require("jetpack").setup({
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	"wellle/context.vim",
 	"ray-x/lsp_signature.nvim",
-	"kyazdani42/nvim-tree.lua",
 	"folke/which-key.nvim",
 	"itchyny/lightline.vim",
 	"alvarosevilla95/luatab.nvim",
 	"arcticicestudio/nord-vim",
 	"sunjon/shade.nvim",
-	"akinsho/toggleterm.nvim",
 	"https://gitlab.com/yorickpeterse/nvim-window.git",
 	"neovim/nvim-lspconfig",
 	"j-hui/fidget.nvim",
 	"tami5/lspsaga.nvim",
 	"nvim-lua/lsp_extensions.nvim",
+	"luukvbaal/nnn.nvim",
 	--[[ "hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
@@ -434,15 +433,36 @@ vim.diagnostic.config({
 	virtual_text = false,
 })
 
--- file tree
-require("nvim-tree").setup({
-	view = {
-		mappings = {
-			list = {
-				{ key = "<CR>", action = "tabnew" },
-			},
+-- file picker configs
+require("fidget").setup({})
+nnn_builtin = require("nnn").builtin
+require("nnn").setup({
+	auto_open = {
+		setup = "picker",
+		tabpage = "picker", -- or "explorer" / "picker", auto open when opening new tabpage
+		empty = true, -- only auto open on empty buffer
+		ft_ignore = { -- dont auto open for these filetypes
+			"gitcommit",
 		},
 	},
+	auto_close = true, -- close tabpage/nvim when nnn is last window
+	replace_netrw = "picker", -- or "explorer" / "picker"
+	mappings = {
+		{ "<C-t>", nnn_builtin.open_in_tab }, -- open file(s) in tab
+		{ "<C-s>", nnn_builtin.open_in_split }, -- open file(s) in split
+		{ "<C-v>", nnn_builtin.open_in_vsplit }, -- open file(s) in vertical split
+		{ "<C-p>", nnn_builtin.open_in_preview }, -- open file in preview split keeping nnn focused
+		{ "<C-y>", nnn_builtin.copy_to_clipboard }, -- copy file(s) to clipboard
+		{ "<C-w>", nnn_builtin.cd_to_path }, -- cd to file directory
+		{ "<C-e>", nnn_builtin.populate_cmdline }, -- populate cmdline (:) with file(s)
+	}, -- table containing mappings, see below
+	windownav = { -- window movement mappings to navigate out of nnn
+		left = "<C-w>h",
+		right = "<C-w>l",
+		next = "<C-w>w",
+		prev = "<C-w>W",
+	},
+	buflisted = false, -- wether or not nnn buffers show up in the bufferlist
 })
 
 -- nvim-window config
@@ -466,34 +486,6 @@ require("nvim-window").setup({
 	},
 })
 
--- terminal configs (with lazygit integration)
-local Terminal = require("toggleterm.terminal").Terminal
-
-function _G.set_terminal_keymaps()
-	local opts = { noremap = true }
-	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
-end
-
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-
-local lazygit = Terminal:new({
-	cmd = "lazygit",
-	dir = "git_dir",
-	direction = "float",
-	float_opts = {
-		border = "double",
-	},
-})
-
-function _lazygit_toggle()
-	lazygit:toggle()
-end
-
 -- tabline
 vim.cmd([[au ColorScheme * hi TabLine gui=none guibg='#4C566A' guifg='#5C6370']])
 vim.cmd([[au ColorScheme * hi TabLineSel guibg='#4C566A' guifg='#282C34']])
@@ -508,16 +500,9 @@ local whichkey = require("which-key")
 whichkey.register({
 	f = {
 		name = "file tree",
-		o = { "<cmd>NvimTreeToggle<cr>", "toggle file tree" },
-		t = { "<cmd>NvimTreeFocus<cr>", "focus file tree" },
+		o = { "<cmd>NnnPicker<cr>", "toggle file tree" },
 		f = { "<cmd>lua require('fzf-lua').files()<cr>", "show fzf files" },
 		g = { "<cmd>lua require('fzf-lua').live_grep()<cr>", "show fzf live grep" },
-	},
-	t = {
-		name = "terminal",
-		o = { "<cmd>ToggleTerm direction=tab<cr>", "open terminal as separate tab" },
-		v = { "<cmd>ToggleTerm direction=vertical<cr>", "open terminal vertically" },
-		w = { "<cmd>ToggleTerm direction=horizontal<cr>", "open terminal horizontally" },
 	},
 	g = {
 		name = "git",
