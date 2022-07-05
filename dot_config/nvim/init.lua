@@ -294,6 +294,9 @@ autocmd VimEnter * Twilight
 
 require("hlargs").setup({})
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 -- lua
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
@@ -376,7 +379,6 @@ lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({
 
 		-- required to fix code action ranges and filter diagnostics
 		ts_utils.setup_client(client)
-		local opts = { silent = true }
 	end,
 }))
 
@@ -387,6 +389,11 @@ lspconfig.volar.setup(coq.lsp_ensure_capabilities({
 vim.g.vsnip_filetypes = {
 	vue = { "javascript", "html" },
 }
+
+-- json
+lspconfig.jsonls.setup(coq.lsp_ensure_capabilities({
+	capabilities = capabilities,
+}))
 
 -- emmet
 local configs = require("lspconfig.configs")
