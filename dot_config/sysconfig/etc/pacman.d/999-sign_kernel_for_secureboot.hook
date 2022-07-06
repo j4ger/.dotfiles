@@ -1,0 +1,13 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Path
+Target = boot/
+
+[Action]
+Description = Signing kernel with Machine Owner Key for Secure Boot
+When = PostTransaction
+Exec = /usr/bin/fd --max-depth 1 'vmlinuz-*' /boot/ --exec /usr/bin/sh -c 'if ! /usr/bin/sbverify --list {} 2>/dev/null | /usr/bin/grep -q "signature certificates"; then /usr/bin/sbsign --key /root/MOK.key --cert /root/MOK.crt --output {} {} && echo Kernel Image Signed ; fi'
+Depends = sbsigntools
+Depends = findutils
+Depends = grep
