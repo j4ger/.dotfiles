@@ -53,6 +53,7 @@ alias gf="git fetch"
 alias gc="git commit -m"
 alias ga="git add"
 alias ls="nnn -de"
+alias cz="chezmoi"
 
 # neovide multigrid support
 alias neovide="neovide --multigrid --neovim-bin ~/nvim.appimage"
