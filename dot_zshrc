@@ -13,7 +13,7 @@ export SAVEHIST=10000
 setopt appendhistory
 
 # default applications
-export EDITOR="neovide --multigrid --neovim-bin /home/j4ger/nvim.appimage"
+export EDITOR="neovide --multigrid --neovim-bin ~/Applications/nvim.appimage"
 export BROWSER=firefox
 
 # start sheldon plugin manager
@@ -56,7 +56,7 @@ alias ls="nnn -de"
 alias cz="chezmoi"
 
 # neovide multigrid support
-alias neovide="neovide --multigrid --neovim-bin ~/nvim.appimage"
+alias neovide="neovide --multigrid --neovim-bin ~/Applications/nvim.appimage"
 alias v="neovide ."
 alias vim="neovide"
 
