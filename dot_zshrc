@@ -52,7 +52,7 @@ alias gp="git push"
 alias gf="git fetch"
 alias gc="git commit -m"
 alias ga="git add"
-alias ls="nnn -de"
+alias ls="n"
 alias cz="chezmoi"
 
 # neovide multigrid support
