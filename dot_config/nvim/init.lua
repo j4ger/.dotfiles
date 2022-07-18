@@ -13,6 +13,9 @@ vim.o.laststatus = 3
 -- autoread
 vim.g.autoread = true
 
+-- allow mouse
+vim.g.mouse = true
+
 -- plugins
 require("jetpack").setup({
 	"nvim-lua/plenary.nvim",
@@ -272,10 +275,8 @@ null_ls.setup({
 				callback = function()
 					vim.lsp.buf.format({
 						bufnr = bufnr,
-						filter = function(clients)
-							return vim.tbl_filter(function(item)
-								return item.name == "null-ls"
-							end, clients)
+						filter = function(current_client)
+							return current_client.name == "null-ls"
 						end,
 					})
 				end,
@@ -322,6 +323,9 @@ lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
 	},
 	capabilities = capabilities,
 }))
+
+-- html
+require("lspconfig").html.setup(coq.lsp_ensure_capabilities({ capabilities = capabilities }))
 
 -- typescript, javascript
 lspconfig.tsserver.setup(coq.lsp_ensure_capabilities({
@@ -434,6 +438,9 @@ lspconfig.ls_emmet.setup(coq.lsp_ensure_capabilities({}))
 
 -- verilog
 require("lspconfig").verible.setup(coq.lsp_ensure_capabilities({}))
+
+-- bash
+require("lspconfig").bashls.setup(coq.lsp_ensure_capabilities({}))
 
 require("lsp_lines").register_lsp_virtual_lines()
 vim.diagnostic.config({
