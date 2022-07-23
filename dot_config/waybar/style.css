@@ -8,14 +8,12 @@ window#waybar {
   background: rgba(0, 0, 0, 0);
 }
 
-.modules-left {
-  margin: 5px;
-  background-color: alpha(@theme_bg_color, 0.5);
-}
-
 .modules-center,
-.modules-right {
-  margin: 5px;
+.modules-right,
+.modules-left {
+  margin: 3px;
+  padding: 2px;
+  box-shadow: 1px 1px 2px 2px alpha(black, 0.3);
 }
 
 .flat {
@@ -36,6 +34,7 @@ window#waybar {
 #pulseaudio,
 #tray,
 #battery,
+#taskbar,
 #idle_inhibitor {
   padding: 0 10px;
   background-color: alpha(@theme_bg_color, 0.75);
