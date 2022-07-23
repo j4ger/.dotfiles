@@ -5,7 +5,7 @@ vim.g.neovide_cursor_vfx_mode = "pixiedust"
 vim.g.neovide_fullscreen = true
 
 -- appearance tweaks
-vim.o.guifont = "FiraCode Nerd Font Mono Retina:h10,Noto Sans Mono CJK SC:h10"
+vim.o.guifont = "FiraCode Nerd Font Mono:h14,Noto Sans Mono CJK SC:h14"
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.laststatus = 3
@@ -14,7 +14,7 @@ vim.o.laststatus = 3
 vim.g.autoread = true
 
 -- allow mouse
-vim.g.mouse = true
+vim.o.mouse = "a"
 
 -- plugins
 require("jetpack").setup({
@@ -262,8 +262,8 @@ local null_ls = require("null-ls")
 null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.diagnostics.eslint_d,
-		null_ls.builtins.formatting.prettier,
+		null_ls.builtins.code_actions.xo,
+		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.formatting.verible_verilog_format,
 	},
 	on_attach = function(client, bufnr)

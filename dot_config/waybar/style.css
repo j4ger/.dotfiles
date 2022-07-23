@@ -1,0 +1,98 @@
+* {
+  font-family: FiraCode Nerd Font Mono, Noto Sans Mono CJK SC;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+window#waybar {
+  background: rgba(0, 0, 0, 0);
+}
+
+.modules-left {
+  margin: 5px;
+  background-color: alpha(@theme_bg_color, 0.5);
+}
+
+.modules-center,
+.modules-right {
+  margin: 5px;
+}
+
+.flat {
+  opacity: 0.75;
+}
+
+.flat.active {
+  opacity: 1;
+}
+
+#clock,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#tray,
+#battery,
+#idle_inhibitor {
+  padding: 0 10px;
+  background-color: alpha(@theme_bg_color, 0.75);
+  color: @theme_fg_color;
+}
+
+#battery {
+  background-color: alpha(@warning_color, 0.75);
+}
+
+#battery.charging {
+  background-color: alpha(@success_color, 0.75);
+}
+
+#battery.plugged {
+  background-color: alpha(@theme_bg_color, 0.75);
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: alpha(@error_color, 0.75);
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+label:focus {
+  background-color: #000000;
+}
+
+#temperature.critical {
+  background-color: alpha(@warning_color, 0.75);
+}
+
+#tray > * {
+  margin-right: 5px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: @warning_color;
+}
+
+#idle_inhibitor.activated {
+  background-color: alpha(@theme_fg_color, 0.75);
+  color: @theme_bg_color;
+}
