@@ -265,6 +265,7 @@ null_ls.setup({
 		null_ls.builtins.code_actions.xo,
 		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.formatting.verible_verilog_format,
+		null_ls.builtins.formatting.taplo,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
@@ -462,7 +463,7 @@ require("nnn").setup({
 	auto_close = true, -- close tabpage/nvim when nnn is last window
 	replace_netrw = "picker", -- or "explorer" / "picker"
 	mappings = {
-		{ "<C-t>", nnn_builtin.open_in_tab }, -- open file(s) in tab
+		{ "<cr>", nnn_builtin.open_in_tab }, -- open file(s) in tab
 		{ "<C-s>", nnn_builtin.open_in_split }, -- open file(s) in split
 		{ "<C-v>", nnn_builtin.open_in_vsplit }, -- open file(s) in vertical split
 		{ "<C-p>", nnn_builtin.open_in_preview }, -- open file in preview split keeping nnn focused
