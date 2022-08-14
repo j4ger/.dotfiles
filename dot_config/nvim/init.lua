@@ -299,6 +299,9 @@ require("hlargs").setup({})
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+-- rust
+lspconfig.rust_analyzer.setup(coq.lsp_ensure_capabilities({}))
+
 -- lua
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")

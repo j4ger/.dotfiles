@@ -10,4 +10,5 @@ history=1
 max-history=5
 default-timeout=2500
 icons=1
-font="Noto Sans CJK SC" 16
+font=Noto Sans CJK SC 12
+width=400
