@@ -62,6 +62,8 @@ require("jetpack").setup({
 	"m-demare/hlargs.nvim",
 	"tversteeg/registers.nvim",
 	"winston0410/range-highlight.nvim",
+	"simrat39/rust-tools.nvim",
+	"lvimuser/lsp-inlayhints.nvim",
 })
 require("jetpack").optimization = 1
 
@@ -266,6 +268,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.formatting.verible_verilog_format,
 		null_ls.builtins.formatting.taplo,
+		null_ls.builtins.formatting.rustfmt,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
@@ -300,7 +303,19 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- rust
-lspconfig.rust_analyzer.setup(coq.lsp_ensure_capabilities({}))
+local rust_tools = require("rust-tools")
+rust_tools.setup({
+	autoSetHints = false,
+	server = coq.lsp_ensure_capabilities({
+		on_attach = function(_, bufnr)
+			-- Hover actions
+			vim.keymap.set("n", "<C-space>", rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+			-- Code action groups
+			vim.keymap.set("n", "<Leader>a", rust_tools.code_action_group.code_action_group, { buffer = bufnr })
+		end,
+		capabilities = capabilities,
+	}),
+})
 
 -- lua
 local runtime_path = vim.split(package.path, ";")
@@ -446,14 +461,18 @@ require("lspconfig").verible.setup(coq.lsp_ensure_capabilities({}))
 -- bash
 require("lspconfig").bashls.setup(coq.lsp_ensure_capabilities({}))
 
-require("lsp_lines").register_lsp_virtual_lines()
+-- lsp lines
+require("lsp_lines").setup()
 vim.diagnostic.config({
 	virtual_text = false,
 })
 
+-- inlay hints
+require("lsp-inlayhints").setup()
+
 -- file picker configs
 require("fidget").setup({})
-nnn_builtin = require("nnn").builtin
+local nnn_builtin = require("nnn").builtin
 require("nnn").setup({
 	auto_open = {
 		setup = "picker",

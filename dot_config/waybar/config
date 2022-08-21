@@ -3,7 +3,8 @@
   "spacing": 4, 
   "modules-left": [
     "wlr/taskbar",
-    "tray"
+    "tray",
+    "custom/now_playing"
   ],
   "modules-center": [
     "backlight",
@@ -18,33 +19,7 @@
     "temperature",
     "battery"
   ],
-  "mpd": {
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-    "format-disconnected": "Disconnected ",
-    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-    "unknown-tag": "N/A",
-    "interval": 2,
-    "consume-icons": {
-      "on": " "
-    },
-    "random-icons": {
-      "off": "<span color=\"#f53c3c\"></span> ",
-      "on": " "
-    },
-    "repeat-icons": {
-      "on": " "
-    },
-    "single-icons": {
-      "on": "1 "
-    },
-    "state-icons": {
-      "paused": "",
-      "playing": ""
-    },
-    "tooltip-format": "MPD (connected)",
-    "tooltip-format-disconnected": "MPD (disconnected)"
-  },
-  "idle_inhibitor": {
+ "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "",
@@ -132,5 +107,12 @@
     "active-first": true,
     "on-click": "activate",
     "on-click-right": "minimize-raise"
+  },
+  "custom/now_playing": {
+     "exec": "echo `playerctl metadata xesam:title` - `playerctl metadata xesam:artist`",
+     "interval": 1,
+     "on-click": "playerctl play-pause",
+     "on-scroll-up": "playerctl previous",
+     "on-scroll-down": "playerctl next"
   }
 }
