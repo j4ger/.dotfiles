@@ -5,7 +5,7 @@ vim.g.neovide_cursor_vfx_mode = "pixiedust"
 vim.g.neovide_fullscreen = true
 
 -- appearance tweaks
-vim.o.guifont = "FiraCode Nerd Font Mono:h14,Noto Sans Mono CJK SC:h14"
+vim.o.guifont = "FiraCode Nerd Font Mono:h14,Noto Sans Mono CJK SC:h16"
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.laststatus = 3
@@ -269,6 +269,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.verible_verilog_format,
 		null_ls.builtins.formatting.taplo,
 		null_ls.builtins.formatting.rustfmt,
+		null_ls.builtins.formatting.clang_format,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
@@ -316,6 +317,9 @@ rust_tools.setup({
 		capabilities = capabilities,
 	}),
 })
+
+-- c,cpp
+lspconfig.clangd.setup(coq.lsp_ensure_capabilities({}))
 
 -- lua
 local runtime_path = vim.split(package.path, ";")
