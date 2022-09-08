@@ -1,0 +1,86 @@
+{
+    "com.github.lazypolymath.ulauncher-git-cheat-sheet": {
+        "id": "com.github.lazypolymath.ulauncher-git-cheat-sheet",
+        "url": "https://github.com/lazypolymath/ulauncher-git-cheat-sheet",
+        "updated_at": "2022-09-08T16:08:23.313646",
+        "last_commit": "15b758027158a0a67c364373ad87381252c9b71c",
+        "last_commit_time": "2022-08-30T09:07:44"
+    },
+    "com.github.lighttigerxiv.ulauncher-session-manager": {
+        "id": "com.github.lighttigerxiv.ulauncher-session-manager",
+        "url": "https://github.com/lighttigerXIV/ulauncher-session-manager",
+        "updated_at": "2022-09-08T16:09:31.885504",
+        "last_commit": "5bc45f64cd667a7b92b00c7bf6fb78ee76910c48",
+        "last_commit_time": "2022-06-24T12:21:43"
+    },
+    "com.github.rapha149.ulauncher-deepl": {
+        "id": "com.github.rapha149.ulauncher-deepl",
+        "url": "https://github.com/Rapha149/ulauncher-deepl/",
+        "updated_at": "2022-09-08T16:11:44.077503",
+        "last_commit": "31e3e85e464a95760ffda32980adcfd2b4e76a84",
+        "last_commit_time": "2022-06-10T11:47:00"
+    },
+    "com.github.melianmiko.ulauncher-nmcli": {
+        "id": "com.github.melianmiko.ulauncher-nmcli",
+        "url": "https://github.com/melianmiko/ulauncher-nmcli",
+        "updated_at": "2022-09-08T16:12:24.422566",
+        "last_commit": "fe967c947748616df602c9d022fec6d68a6b2cf2",
+        "last_commit_time": "2022-05-01T12:20:38"
+    },
+    "com.github.dhelmr.ulauncher-tldr": {
+        "id": "com.github.dhelmr.ulauncher-tldr",
+        "url": "https://github.com/dhelmr/ulauncher-tldr",
+        "updated_at": "2022-09-08T16:21:55.065635",
+        "last_commit": "2ad5d29963db649775f68a7815af18509f4c287f",
+        "last_commit_time": "2021-09-07T14:26:21"
+    },
+    "com.github.tchar.ulauncher-albert-calculate-anything": {
+        "id": "com.github.tchar.ulauncher-albert-calculate-anything",
+        "url": "https://github.com/tchar/ulauncher-albert-calculate-anything",
+        "updated_at": "2022-09-08T16:22:03.952458",
+        "last_commit": "ee0903174c8b87cd1f7c3b6c1acef10702547507",
+        "last_commit_time": "2021-08-12T06:39:56"
+    },
+    "com.github.devkleber.ulauncher-open-link": {
+        "id": "com.github.devkleber.ulauncher-open-link",
+        "url": "https://github.com/DevKleber/ulauncher-open-link",
+        "updated_at": "2022-09-08T16:26:28.516431",
+        "last_commit": "5cb0d302500a38582e305ade7904420b830e9e60",
+        "last_commit_time": "2022-05-07T22:35:10"
+    },
+    "com.github.sergius02.ulauncher-colorconverter": {
+        "id": "com.github.sergius02.ulauncher-colorconverter",
+        "url": "https://github.com/sergius02/ulauncher-colorconverter",
+        "updated_at": "2022-09-08T16:30:16.457867",
+        "last_commit": "2d5e2bc17e89f1f1dc561f73e68ea574e0be844a",
+        "last_commit_time": "2020-12-06T20:59:43"
+    },
+    "com.github.ceroprogramming.ulauncher-pulsecontrol": {
+        "id": "com.github.ceroprogramming.ulauncher-pulsecontrol",
+        "url": "https://github.com/CeroProgramming/ulauncher-pulsecontrol",
+        "updated_at": "2022-09-08T16:30:35.721513",
+        "last_commit": "ccd12ea616c3aca9545bc0fd39d84901f092acb2",
+        "last_commit_time": "2021-10-19T12:19:26"
+    },
+    "com.github.kbialek.ulauncher-bitwarden": {
+        "id": "com.github.kbialek.ulauncher-bitwarden",
+        "url": "https://github.com/kbialek/ulauncher-bitwarden",
+        "updated_at": "2022-09-08T16:38:49.846434",
+        "last_commit": "5701f18b7d4d14bb0c2da3ccfbaa618804b27d4a",
+        "last_commit_time": "2022-02-11T10:14:06"
+    },
+    "com.github.munim.ulauncher-ip-lookup": {
+        "id": "com.github.munim.ulauncher-ip-lookup",
+        "url": "https://github.com/munim/ulauncher-ip-lookup",
+        "updated_at": "2022-09-08T16:39:11.201249",
+        "last_commit": "2c4951a3828f9a8dde79f8bf6345f496c48e612e",
+        "last_commit_time": "2022-03-19T09:33:01"
+    },
+    "com.github.friday.ulauncher-clipboard": {
+        "id": "com.github.friday.ulauncher-clipboard",
+        "url": "https://github.com/friday/ulauncher-clipboard",
+        "updated_at": "2022-09-08T16:52:18.722941",
+        "last_commit": "73420cf4816f925321db15379c9c981c8f28c6fe",
+        "last_commit_time": "2022-08-03T20:22:13"
+    }
+}

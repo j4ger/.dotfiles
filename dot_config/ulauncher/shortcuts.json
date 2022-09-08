@@ -1,0 +1,62 @@
+{
+    "db76075b-66bc-43e4-8a54-c725f62b8697": {
+        "id": "db76075b-66bc-43e4-8a54-c725f62b8697",
+        "name": "Google Search",
+        "keyword": "g",
+        "cmd": "https://google.com/search?q=%s",
+        "icon": "/usr/share/ulauncher/media/google-search-icon.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1662623904.9612885
+    },
+    "c012079e-94c3-4963-8ab1-5ce97dd3e8be": {
+        "id": "c012079e-94c3-4963-8ab1-5ce97dd3e8be",
+        "name": "Stack Overflow",
+        "keyword": "so",
+        "cmd": "https://stackoverflow.com/search?q=%s",
+        "icon": "/usr/share/ulauncher/media/stackoverflow-icon.svg",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1662623904.961338
+    },
+    "d21db92e-dab9-425a-8524-5ea3d293e95b": {
+        "id": "d21db92e-dab9-425a-8524-5ea3d293e95b",
+        "name": "Wikipedia",
+        "keyword": "wiki",
+        "cmd": "https://en.wikipedia.org/wiki/%s",
+        "icon": "/usr/share/ulauncher/media/wikipedia-icon.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1662623904.961382
+    },
+    "4c6086fc-94e3-4cff-ab95-ad4b64168fd3": {
+        "id": "4c6086fc-94e3-4cff-ab95-ad4b64168fd3",
+        "name": "Baidu",
+        "keyword": "b",
+        "cmd": "https://www.baidu.com/s?wd=%s",
+        "icon": "~/favicon.ico",
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1662624323.707789
+    },
+    "c1260343-0f12-44bd-862d-7b32eb47c70c": {
+        "id": "c1260343-0f12-44bd-862d-7b32eb47c70c",
+        "name": "Bilibili",
+        "keyword": "bili",
+        "cmd": "https://search.bilibili.com/all?keyword=%s",
+        "icon": "~/favicon2.ico",
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1662624394.3778806
+    },
+    "9b3b4f3e-750d-4cda-812b-0b6801319953": {
+        "id": "9b3b4f3e-750d-4cda-812b-0b6801319953",
+        "name": "Github",
+        "keyword": "gh",
+        "cmd": "https://github.com/search?q=%s",
+        "icon": null,
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1662626192.3258848
+    }
+}
