@@ -36,6 +36,7 @@ window#waybar {
 #battery,
 #taskbar,
 #custom-now_playing,
+#custom-notification,
 #idle_inhibitor {
   padding: 0 10px;
   background-color: alpha(@theme_bg_color, 0.75);

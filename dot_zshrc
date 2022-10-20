@@ -13,7 +13,8 @@ export SAVEHIST=10000
 setopt appendhistory
 
 # default applications
-export EDITOR="neovide --multigrid --neovim-bin ~/Applications/nvim.appimage"
+# export EDITOR="neovide --multigrid --neovim-bin ~/Applications/nvim.appimage"
+export EDITOR="lapce"
 export BROWSER=firefox
 
 # start sheldon plugin manager
