@@ -17,11 +17,19 @@ setopt appendhistory
 export EDITOR="lapce"
 export BROWSER=firefox
 
+# asdf version manager
+. /opt/asdf-vm/asdf.sh
+
 # start sheldon plugin manager
 eval "$(sheldon source)"
 
-# setup completion
-autoload -Uz compinit && compinit
+# setup completion but only do compinit once per day
+autoload -Uz compinit 
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+else
+	compinit -C;
+fi;
 
 # load thefuck support
 zsh-defer -c 'eval "$(thefuck --alias)"'
@@ -35,6 +43,9 @@ eval "$(zoxide init zsh)"
 # configure fzf to use fd
 export FZF_DEFAULT_COMMAND="fd --type f"
 
+# batcat theme
+export BAT_THEME="gruvbox-dark"
+
 # aliases
 ## navigation
 alias ..="cd .."
@@ -43,7 +54,6 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 ## utilities
-alias nnn="nnn -de"
 alias cat="bat"
 alias grep="rg"
 alias g="git"
@@ -54,8 +64,8 @@ alias gp="git push"
 alias gf="git fetch"
 alias gc="git commit -m"
 alias ga="git add"
-alias ls="n"
 alias cz="chezmoi"
+alias rr="ranger_cd"
 
 # neovide multigrid support
 alias neovide="neovide --multigrid --neovim-bin ~/Applications/nvim.appimage"
@@ -72,7 +82,7 @@ export NNN_PLUG='d:dragdrop;s:!qrcp $nnn;r:!qrcp receive;q:preview-tui;e:suedit;
 
 # nnn quit_cd
 # source: https://github.com/jarun/nnn/blob/master/misc/quitcd/quitcd.bash_zsh
-n ()
+nn ()
 {
     # Block nesting of nnn in subshells
     if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
@@ -99,4 +109,18 @@ n ()
             . "$NNN_TMPFILE"
             rm -f "$NNN_TMPFILE" > /dev/null
     fi
+}
+
+tere() {
+    local result=$(command tere "$@")
+    [ -n "$result" ] && cd -- "$result"
+}
+
+ranger_cd() {
+    temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+    ranger --choosedir="$temp_file" -- "${@:-$PWD}"
+    if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$PWD" ]; then
+        cd -- "$chosen_dir"
+    fi
+    rm -f -- "$temp_file"
 }

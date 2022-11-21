@@ -13,13 +13,6 @@
         "last_commit": "5bc45f64cd667a7b92b00c7bf6fb78ee76910c48",
         "last_commit_time": "2022-06-24T12:21:43"
     },
-    "com.github.rapha149.ulauncher-deepl": {
-        "id": "com.github.rapha149.ulauncher-deepl",
-        "url": "https://github.com/Rapha149/ulauncher-deepl/",
-        "updated_at": "2022-09-08T16:11:44.077503",
-        "last_commit": "31e3e85e464a95760ffda32980adcfd2b4e76a84",
-        "last_commit_time": "2022-06-10T11:47:00"
-    },
     "com.github.melianmiko.ulauncher-nmcli": {
         "id": "com.github.melianmiko.ulauncher-nmcli",
         "url": "https://github.com/melianmiko/ulauncher-nmcli",
@@ -82,5 +75,12 @@
         "updated_at": "2022-09-08T16:52:18.722941",
         "last_commit": "73420cf4816f925321db15379c9c981c8f28c6fe",
         "last_commit_time": "2022-08-03T20:22:13"
+    },
+    "com.github.nastuzzisamy.ulauncher-translate": {
+        "id": "com.github.nastuzzisamy.ulauncher-translate",
+        "url": "https://github.com/NastuzziSamy/ulauncher-translate",
+        "updated_at": "2022-10-25T19:45:06.454916",
+        "last_commit": "f16b6eed05923e604bacafefdc40b7b7290e21da",
+        "last_commit_time": "2021-03-27T11:43:48"
     }
 }
