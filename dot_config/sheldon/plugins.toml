@@ -41,15 +41,7 @@ github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 apply = ["defer"]
 
-[plugins.zsh-history-substring-search]
-github = "zsh-users/zsh-history-substring-search"
-apply = ["defer"]
-
 [plugins.rust-completions]
 github = "ryutok/rust-zsh-completions"
-apply = ["defer"]
-
-[plugins.zsh-vi-mode]
-github = "jeffreytse/zsh-vi-mode"
 apply = ["defer"]
 

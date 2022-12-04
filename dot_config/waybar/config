@@ -82,7 +82,6 @@
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
-    "on-click": "gnome-control-center",
     "on-click-right": "blueman-manager"
   },
   "pulseaudio": {

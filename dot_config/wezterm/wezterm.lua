@@ -11,4 +11,6 @@ return {
 	window_background_opacity = 0.6,
 	color_scheme = "nord",
 	enable_wayland = true,
+	initial_cols = 100,
+	initial_rows = 28,
 }
