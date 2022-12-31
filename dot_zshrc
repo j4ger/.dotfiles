@@ -3,6 +3,7 @@ path+=~/.local/bin
 path+=~/.local/n/bin
 path+=~/.yarn/bin
 path+=~/.cargo/bin
+path+=~/go/bin
 
 export PATH
 
@@ -38,9 +39,10 @@ zsh-defer -c 'eval "$(thefuck --alias)"'
 eval "$(starship init zsh)"
 
 # start zoxide
-eval "$(zoxide init zsh)"
+zsh-defer -c 'eval "$(zoxide init zsh)"'
 
 # configure fzf to use fd
+export FZF_DEFAULT_OPS="--preview 'pistol {}'"
 export FZF_DEFAULT_COMMAND="fd --type f"
 
 # batcat theme
@@ -66,15 +68,13 @@ alias gc="git commit -m"
 alias ga="git add"
 alias cz="chezmoi"
 alias rr="ranger_cd"
+alias x='cd "$(xplr --print-pwd-as-result)"'
+alias ls='exa --icons --long --no-permissions --no-user'
 
 # neovide multigrid support
 alias neovide="neovide --multigrid"
 alias v="neovide ."
 alias vim="neovide"
-
-# keybindings for history-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
 
 # nnn plugins
 export NNN_FIFO=/tmp/nnn.fifo
@@ -147,4 +147,6 @@ function br {
 }
 
 # mcfly init
-eval "$(mcfly init zsh)"
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_FUZZY=2
+zsh-defer -c 'eval "$(mcfly init zsh)"'
