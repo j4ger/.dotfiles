@@ -15,7 +15,7 @@ setopt appendhistory
 
 # default applications
 # export EDITOR="neovide --multigrid"
-export EDITOR="lapce"
+export EDITOR="nvim"
 export BROWSER="firefox"
 
 # asdf version manager
@@ -73,8 +73,8 @@ alias ls='exa --icons --long --no-permissions --no-user'
 
 # neovide multigrid support
 alias neovide="neovide --multigrid"
-alias v="neovide ."
-alias vim="neovide"
+alias v="nvim ."
+alias vim="nvim"
 
 # nnn plugins
 export NNN_FIFO=/tmp/nnn.fifo
