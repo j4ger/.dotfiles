@@ -1,0 +1,6 @@
+[build]
+rustc-wrapper = "/path/to/sccache"
+
+[target.x86_64-unknown-linux-gnu]
+linker = "clang"
+rustflags = ["-C", "link-arg=-fuse-ld=/path/to/mold"]

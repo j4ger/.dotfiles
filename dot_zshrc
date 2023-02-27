@@ -73,7 +73,8 @@ alias ls='exa --icons --long --no-permissions --no-user'
 
 # neovide multigrid support
 alias neovide="neovide --multigrid"
-alias v="nvim ."
+alias gn="goneovim"
+alias v="goneovim ."
 alias vim="nvim"
 
 # nnn plugins
