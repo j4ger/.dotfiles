@@ -45,9 +45,6 @@ zsh-defer -c 'eval "$(zoxide init zsh)"'
 export FZF_DEFAULT_OPS="--preview 'pistol {}'"
 export FZF_DEFAULT_COMMAND="fd --type f"
 
-# batcat theme
-export BAT_THEME="gruvbox-dark"
-
 # aliases
 ## navigation
 alias ..="cd .."
@@ -73,8 +70,8 @@ alias ls='exa --icons --long --no-permissions --no-user'
 
 # neovide multigrid support
 alias neovide="neovide --multigrid"
-alias gn="goneovim"
-alias v="goneovim ."
+alias v="nvim ."
+alias n="nvim"
 alias vim="nvim"
 
 # nnn plugins

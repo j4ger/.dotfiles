@@ -8,7 +8,7 @@ return {
 	font_size = 16.0,
 	enable_tab_bar = false,
 	enable_scroll_bar = false,
-	window_background_opacity = 0.5,
+	window_background_opacity = 0.85,
 	color_scheme = "nord",
 	enable_wayland = true,
 	initial_cols = 100,

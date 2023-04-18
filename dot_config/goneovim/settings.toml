@@ -1,0 +1,24 @@
+[Editor]
+Transparent = 0.85
+
+StartMaximizedWindow = true
+
+FontFamily = "FiraCode Nerd Font Mono"
+
+ExtCmdline = true
+ExtPopupmenu = true
+ExtTabline = true
+ExtMessages = true
+
+HideMouseWhenTyping = true
+
+DrawShadowForFloatWindow = true
+
+[Cursor]
+SmoothMove = true
+
+[Message]
+Transparent = 0.9
+
+[MiniMap]
+Visible = true
