@@ -24,6 +24,9 @@ local sources = {
 	-- verilog
 	b.diagnostics.verilator,
 	b.formatting.verible_verilog_format,
+
+	-- scala
+	b.formatting.scalafmt,
 }
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})

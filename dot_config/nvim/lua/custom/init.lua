@@ -8,3 +8,5 @@
 --
 
 vim.wo.relativenumber = true
+
+
