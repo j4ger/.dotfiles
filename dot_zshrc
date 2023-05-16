@@ -5,7 +5,7 @@ path+=~/.yarn/bin
 path+=~/.cargo/bin
 path+=~/go/bin
 
-export PATH
+export PATH=~/.rye/shims:$path:$PATH
 
 # history config
 export HISTFILE=~/.zsh_history

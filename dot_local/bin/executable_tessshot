@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+TMPDIR=$(mktemp -d -t ocr-XXXXXXXXXX)
+trap "rm -rf $TMPDIR" EXIT
+
+cd "$TMPDIR"
+flameshot gui -r > img.png
+tesseract img.png text -l eng+chi_sim
+cat text.txt | wl-copy
+notify-send "OCR complete." -a "tess-shot" "$(head text.txt)"

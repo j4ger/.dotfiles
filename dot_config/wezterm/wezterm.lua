@@ -11,7 +11,11 @@ return {
 	window_background_opacity = 0.85,
 	color_scheme = "nord",
 	enable_wayland = true,
-	initial_cols = 100,
-	initial_rows = 28,
 	default_cursor_style = "BlinkingBar",
+	window_padding = {
+		left = 0,
+		right = 0,
+		top = 0,
+		bottom = 0,
+	},
 }
