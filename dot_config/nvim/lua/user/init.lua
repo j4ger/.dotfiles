@@ -88,6 +88,14 @@ return {
 					{ name = "buffer",                 priority = 500 },
 					{ name = "path",                   priority = 250 },
 					{ name = "nvim_lsp_signature_help" },
+					{
+						name = "buffer",
+						option = {
+							get_bufnrs = function()
+								return vim.api.nvim_list_bufs()
+							end,
+						},
+					},
 				})
 
 				-- return the new table to be used
