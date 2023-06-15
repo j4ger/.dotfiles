@@ -1,23 +1,15 @@
 # path configs
-path+=~/.local/bin
-path+=~/.local/n/bin
-path+=~/.yarn/bin
-path+=~/.cargo/bin
-path+=~/go/bin
+source "$HOME/.local/bin/path.bash"
 
 # history config
-export HISTFILE=~/.zsh_history
+export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
 setopt appendhistory
 
 # default applications
-# export EDITOR="neovide --multigrid"
-export EDITOR="nvim"
+export EDITOR="helix"
 export BROWSER="firefox"
-
-# start sheldon plugin manager
-eval "$(sheldon source)"
 
 # setup completion but only do compinit once per day
 autoload -Uz compinit 
@@ -27,46 +19,7 @@ else
 	compinit -C;
 fi;
 
-# load thefuck support
-zsh-defer -c 'eval "$(thefuck --alias)"'
-
-# start starship prompt
-eval "$(starship init zsh)"
+source "$HOME/.local/bin/prepwork.sh"
 
 # start zoxide
-zsh-defer -c 'eval "$(zoxide init zsh)"'
-
-# configure fzf to use fd
-export FZF_DEFAULT_COMMAND="fd --type f"
-
-# aliases
-## navigation
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-
-## utilities
-alias cat="bat"
-alias grep="rg"
-alias g="git"
-alias lg="lazygit"
-alias mkdir="mkdir -p"
-alias chmox="chmod +x"
-alias gp="git push"
-alias gf="git fetch"
-alias gc="git commit -m"
-alias ga="git add"
-alias cz="chezmoi"
-alias ls='exa --icons --long --no-permissions --no-user'
-
-# neovide multigrid support
-alias neovide="neovide --multigrid"
-alias v="nvim ."
-alias n="nvim"
-alias vim="nvim"
-
-# mcfly init
-export MCFLY_KEY_SCHEME=vim
-export MCFLY_FUZZY=2
-zsh-defer -c 'eval "$(mcfly init zsh)"'
+#eval "$(zoxide init zsh)"

@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 return {
 	font = wezterm.font_with_fallback({
-		"FiraCode Nerd Font Mono",
+		"FiraCode Nerd Font Mono Regular",
 		"Noto Sans CJK SC",
 	}),
 	font_size = 16.0,
@@ -13,9 +13,9 @@ return {
 	enable_wayland = true,
 	default_cursor_style = "BlinkingBar",
 	window_padding = {
-		left = 0,
+		left = 15,
 		right = 0,
-		top = 0,
+		top = 5,
 		bottom = 0,
 	},
 }

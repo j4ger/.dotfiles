@@ -19,29 +19,18 @@ shell = "zsh"
 # [plugins.base16]
 # github = "chriskempson/base16-shell"
 
-[plugins.zsh-defer]
-github = "romkatv/zsh-defer"
-
-[templates]
-defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
-
 [plugins.fzf-tab]
 github = "Aloxaf/fzf-tab"
 
 [plugins.syntax-highlighting]
 github = "zdharma-continuum/fast-syntax-highlighting"
-apply = ["defer"]
 
 [plugins.completion]
 github = "zsh-users/zsh-completions"
-apply = ["defer"]
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
-apply = ["defer"]
 
 [plugins.rust-completions]
 github = "ryutok/rust-zsh-completions"
-apply = ["defer"]
-
