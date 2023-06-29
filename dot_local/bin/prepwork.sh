@@ -13,20 +13,22 @@ alias .....="cd ../../../.."
 ## utilities
 ### only in container
 if [ "$CONTAINER_ID" = "archbox" ]; then
-  alias cat="bat"
-  alias grep="rg"
-  alias lg="lazygit"
   alias cz="chezmoi"
-  alias ls='exa --icons --long --no-permissions --no-user'
 fi
 
+# only in host
 if [ -z ${CONTAINER_ID+x} ]; then
+  alias helix="hx"
   alias archbox="distrobox enter archbox"
-  alias fedorabox="distrobox enter fedorabox"
-  alias sudoarchbox="distrobox enter sudoarchbox"
+  alias devbox="distrobox enter devbox"
 fi
 
 ### general
+alias ls='exa --icons --long --no-permissions --no-user'
+alias cat="bat"
+alias grep="rg"
+alias lg="lazygit"
+alias z="zoxide"
 alias chmox="chmod +x"
 alias gp="git push"
 alias gf="git fetch"

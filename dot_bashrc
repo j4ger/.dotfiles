@@ -12,6 +12,8 @@ then
     source "$HOME/.local/bin/prepwork.sh"
 fi
 
+eval "$(starship init bash)"
+
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
