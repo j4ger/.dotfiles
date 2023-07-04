@@ -1,0 +1,14 @@
+#titlebar {
+    -moz-appearance: none !important;
+}
+.titlebar-buttonbox {
+    display: flex;
+    -moz-context-properties: fill, fill-opacity !important;
+}
+.titlebar-min {
+    display: flex !important;
+}
+
+.titlebar-restore {
+    display: flex !important;
+}

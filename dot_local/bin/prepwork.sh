@@ -11,19 +11,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 ## utilities
-### only in container
-if [ "$CONTAINER_ID" = "archbox" ]; then
-  alias cz="chezmoi"
-fi
-
-# only in host
-if [ -z ${CONTAINER_ID+x} ]; then
-  alias helix="hx"
-  alias archbox="distrobox enter archbox"
-  alias devbox="distrobox enter devbox"
-fi
-
-### general
+alias cz="chezmoi"
 alias ls='exa --icons --long --no-permissions --no-user'
 alias cat="bat"
 alias grep="rg"

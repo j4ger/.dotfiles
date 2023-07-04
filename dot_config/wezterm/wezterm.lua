@@ -2,9 +2,9 @@ local wezterm = require("wezterm")
 
 return {
 	font = wezterm.font_with_fallback({
-		"FiraCode Nerd Font Mono",
+		"FiraMono Nerd Font Mono",
 		"Noto Sans Mono CJK SC",
-		"Noto Emoji"
+		"Twemoji"
 	}),
 	font_size = 16.0,
 	enable_tab_bar = false,
