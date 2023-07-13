@@ -1,3 +1,44 @@
+[bismuth][Global Shortcuts]
+decrease_master_size=
+decrease_master_win_count=
+decrease_window_height=
+decrease_window_width=
+focus_bottom_window=Meta+J
+focus_left_window=Meta+H
+focus_next_window=
+focus_prev_window=
+focus_right_window=Meta+L
+focus_upper_window=Meta+K
+increase_master_size=
+increase_master_win_count=
+increase_window_height=
+increase_window_width=
+move_window_to_bottom_pos=
+move_window_to_left_pos=
+move_window_to_next_pos=
+move_window_to_prev_pos=
+move_window_to_right_pos=
+move_window_to_upper_pos=
+next_layout=
+prev_layout=
+push_window_to_master=
+rotate=
+rotate_part=
+rotate_reverse=
+toggle_float_layout=
+toggle_monocle_layout=
+toggle_quarter_layout=
+toggle_spiral_layout=
+toggle_spread_layout=
+toggle_stair_layout=
+toggle_three_column_layout=
+toggle_tile_layout=
+toggle_window_floating=
+
+[kded5][Global Shortcuts]
+Show System Activity=Ctrl+Esc
+display=Display; Meta+P
+
 [ksmserver][Global Shortcuts]
 Halt Without Confirmation=
 Lock Session=Screensaver; Meta+Shift+L
@@ -10,7 +51,7 @@ Activate Window Demanding Attention=Meta+Ctrl+A
 Decrease Opacity=
 Edit Tiles=Meta+T
 Expose=Ctrl+F9
-ExposeAll=Launch (C); Ctrl+F10
+ExposeAll=Ctrl+F10; Launch (C)
 ExposeClass=Ctrl+F7
 ExposeClassCurrentDesktop=
 Increase Opacity=
@@ -35,7 +76,7 @@ Switch Window Down=Meta+Alt+Down
 Switch Window Left=Meta+Alt+Left
 Switch Window Right=Meta+Alt+Right
 Switch Window Up=Meta+Alt+Up
-Switch to Desktop 1=Ctrl+F1; Meta+1
+Switch to Desktop 1=Meta+1; Ctrl+F1
 Switch to Desktop 10=
 Switch to Desktop 11=
 Switch to Desktop 12=
@@ -46,10 +87,10 @@ Switch to Desktop 16=
 Switch to Desktop 17=
 Switch to Desktop 18=
 Switch to Desktop 19=
-Switch to Desktop 2=Ctrl+F2; Meta+2
+Switch to Desktop 2=Meta+2; Ctrl+F2
 Switch to Desktop 20=
-Switch to Desktop 3=Meta+3; Ctrl+F3
-Switch to Desktop 4=Meta+4; Ctrl+F4
+Switch to Desktop 3=Ctrl+F3; Meta+3
+Switch to Desktop 4=Ctrl+F4; Meta+4
 Switch to Desktop 5=Meta+5
 Switch to Desktop 6=Meta+6
 Switch to Desktop 7=Meta+7
@@ -160,13 +201,17 @@ Window to Screen 5=
 Window to Screen 6=
 Window to Screen 7=
 view_actual_size=
-view_zoom_in=Meta++; Meta+=
+view_zoom_in=Meta+=; Meta++
 view_zoom_out=Meta+-
 
+[org.kde.krunner.desktop][Global Shortcuts]
+RunClipboard=Alt+Shift+F2
+_launch=Search; Meta+D
+
 [org.kde.spectacle.desktop][Global Shortcuts]
-ActiveWindowScreenShot=Meta+Print; Meta+S
+ActiveWindowScreenShot=Meta+S; Meta+Print
 CurrentMonitorScreenShot=
-FullScreenScreenShot=Meta+Ctrl+S; Shift+Print
+FullScreenScreenShot=Shift+Print; Meta+Ctrl+S
 OpenWithoutScreenshot=
 RectangularRegionScreenShot=Meta+Shift+Print; Meta+Shift+S
 WindowUnderCursorScreenShot=Meta+Ctrl+Print
@@ -218,4 +263,4 @@ switch to previous activity=
 toggle do not disturb=
 
 [yakuake][Global Shortcuts]
-toggle-window-state=Meta+Return
+toggle-window-state=Meta+Return; F12

@@ -19,6 +19,8 @@ eval "$(direnv hook bash)"
 source ~/.bash-preexec.sh
 eval "$(atuin init bash)"
 
+eval "$(zoxide init bash)"
+
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
 
