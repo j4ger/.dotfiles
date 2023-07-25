@@ -5,6 +5,7 @@ keybinds {
         // bind "Alt c" { Copy; }
         unbind "Ctrl s"
         bind "Ctrl f" { SwitchToMode "Search"; }
+        bind "Ctrl o" { ToggleTab; }
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
