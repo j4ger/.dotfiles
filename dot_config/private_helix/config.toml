@@ -1,0 +1,39 @@
+theme = "catppuccin_frappe"
+
+[editor]
+line-number = "relative"
+bufferline = "multiple"
+
+[editor.cursor-shape]
+insert = "bar"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
+[editor.indent-guides]
+render = true
+
+[editor.statusline]
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "V"
+
+[editor.lsp]
+display-inlay-hints = true
+
+[keys.normal]
+C-s = ":w"
+
+[keys.insert.j]
+j = "normal_mode"
+k = "normal_mode"
+
