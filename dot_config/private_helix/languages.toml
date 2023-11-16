@@ -1,0 +1,15 @@
+[[language]]
+name = "css"
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "css" ] }
+
+[[language]]
+name = "typescript"
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "typescript" ] }
+
+[[language]]
+name = "javascript"
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "javascript" ] }
+
+[[language]]
+name = "json"
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "json" ] }

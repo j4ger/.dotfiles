@@ -19,4 +19,6 @@ return {
 		top = 5,
 		bottom = 0,
 	},
+	xim_im_name = 'fcitx',
+	use_ime = true,
 }
