@@ -569,5 +569,7 @@ source ~/.local/share/zoxide/init.nu
 
 source ~/.local/share/starship/init.nu
 
+source ~/.local/share/carapace/init.nu
+
 $env.PATH = ($env.PATH | split row (char esep) | append '~/.cargo/bin')
 
