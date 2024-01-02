@@ -571,5 +571,5 @@ source ~/.local/share/starship/init.nu
 
 source ~/.local/share/carapace/init.nu
 
-$env.PATH = ($env.PATH | split row (char esep) | append '~/.cargo/bin')
+$env.PATH = ($env.PATH | split row (char esep) | append '~/.cargo/bin' | prepend '~/.rye/shims' | append '/opt/android-sdk/platform-tools')
 

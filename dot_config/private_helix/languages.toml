@@ -1,15 +1,38 @@
 [[language]]
 name = "css"
 formatter = { command = "dprint", args = [ "fmt", "--stdin", "css" ] }
+auto-format = true
 
 [[language]]
 name = "typescript"
-formatter = { command = "dprint", args = [ "fmt", "--stdin", "typescript" ] }
+language-servers = [ "typescript-language-server" ]
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "ts" ] }
+auto-format = true
 
 [[language]]
 name = "javascript"
-formatter = { command = "dprint", args = [ "fmt", "--stdin", "javascript" ] }
+language-servers = [ "typescript-language-server" ]
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "js" ] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = [ "typescript-language-server" ]
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "jsx" ] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = [ "typescript-language-server" ]
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "tsx" ] }
+auto-format = true
 
 [[language]]
 name = "json"
 formatter = { command = "dprint", args = [ "fmt", "--stdin", "json" ] }
+auto-format = true
+
+[[language]]
+name = "python"
+auto-format = true
+

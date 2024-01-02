@@ -40,3 +40,4 @@ alias cz = chezmoi
 alias h = helix
 
 $env.EDITOR = "helix"
+$env.ANDROID_HOME = "/home/j4ger/.local/share/Android/sdk"
