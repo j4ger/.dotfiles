@@ -1,14 +1,5 @@
 local custom = {}
 
-custom["00sapo/visual.nvim"] = {
-  opts = { treesitter_textobjects = true },
-  event = "VeryLazy",
-  config = function()
-    require('visual').setup()
-    vim.cmd("VisualEnable")
-  end
-}
-
 custom["folke/flash.nvim"] = {
   lazy = true,
   event = "VeryLazy",

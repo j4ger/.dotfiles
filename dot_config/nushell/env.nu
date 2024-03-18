@@ -38,6 +38,7 @@ alias lg = lazygit
 alias zj = zellij
 alias cz = chezmoi
 alias h = helix
+alias n = neovide
 
 $env.EDITOR = "helix"
 $env.ANDROID_HOME = "/home/j4ger/.local/share/Android/sdk"

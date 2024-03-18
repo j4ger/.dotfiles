@@ -571,5 +571,5 @@ source ~/.local/share/starship/init.nu
 
 source ~/.local/share/carapace/init.nu
 
-$env.PATH = ($env.PATH | split row (char esep) | append '~/.cargo/bin' | prepend '~/.rye/shims' | append '/opt/android-sdk/platform-tools')
+$env.PATH = ($env.PATH | split row (char esep) | append '~/.cargo/bin' | prepend '~/.rye/shims' | append '/opt/android-sdk/platform-tools' | append '/home/j4ger/.local/share/Android/sdk/build-tools/34.0.0')
 

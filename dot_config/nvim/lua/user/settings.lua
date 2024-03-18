@@ -15,7 +15,8 @@ settings["colorscheme"] = "tokyonight-moon"
 settings["disabled_plugins"] = {
   "rhysd/clever-f.vim",
   "phaazon/hop.nvim",
-  "mfussenegger/nvim-treehopper"
+  "mfussenegger/nvim-treehopper",
+  "karb94/neoscroll.nvim"
 }
 
 settings["lsp_deps"] = function(defaults)
@@ -25,6 +26,7 @@ settings["lsp_deps"] = function(defaults)
 	"html",
 	"jsonls",
 	"lua_ls",
+	"taplo",
 	-- "pylsp",
 	-- "gopls",
   }
